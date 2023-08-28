@@ -19,7 +19,7 @@ public class EMSPCdrController {
     }
 
     /**
-     * Fetch CDRs from the receivers system.
+     * Fetch CDRs from the receiver's system.
      * @param id - id of CDR
      * @return The endpoint returns the requested CDR, if it exists.
      */
@@ -28,13 +28,13 @@ public class EMSPCdrController {
             @PathVariable(value = "id") String id
     ) {
         return ResponseEntity.ok(emspCdrService.getCdr(id));
-    };
+    }
 
     @PostMapping
     public ResponseEntity<String> postCdr(
             @RequestBody @Valid CdrDTO cdrDTO
     ) {
         return ResponseEntity.ok(emspCdrService.postCdr(cdrDTO));
-    };
+    }
 
 }
