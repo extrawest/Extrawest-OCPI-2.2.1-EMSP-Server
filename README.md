@@ -116,11 +116,11 @@ public class EMSPTariffServiceImpl implements EMSPTariffService {
 Current library provides APIs for OCPI 2.2.1. To see changes between OCPI 2.2.1 and previous versions please check [OCPI changelog](https://github.com/ocpi/ocpi/blob/2.2.1/changelog.asciidoc#changelog_changelog)
 for OCPI 2.1.1 to OCPI 2.2 -> OCPI 2.2.1
 
-#### Extrawest-OCPI-2.2.1-EMSP-Server library (v2023.8.24) covers next modules:
+#### Extrawest-OCPI-2.2.1-EMSP-Server library (v2023.7.12) covers next modules:
 
 Functional Modules:
 
- Module            | v2023.8.24 | Description                                                                                                                                                                                                                                                                                                                               
+ Module            | v2023.7.12 | Description                                                                                                                                                                                                                                                                                                                               
 -------------------|----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
  [Locations](https://github.com/ocpi/ocpi/blob/2.2.1/mod_locations.asciidoc) | +         | The Location objects live in the CPO back-end system. They describe the charging locations of an operator                                                                                                                                                                                                                                 |
  [Sessions](https://github.com/ocpi/ocpi/blob/2.2.1/mod_sessions.asciidoc) | +         | The Session object describes one charging session. The Session object is owned by the CPO back-end system, and can be GET from the CPO system, or pushed by the CPO to another system                                                                                                                                                     |
@@ -133,7 +133,7 @@ Functional Modules:
 
 Configuration Modules:
 
-Module | v2023.8.24 | Description                                                                                                                          
+Module | v2023.7.12 | Description                                                                                                                          
 ------------ |-----------|--------------------------------------------------------------------------------------------------------------------------------------
 [Credentials](https://github.com/ocpi/ocpi/blob/2.2.1/credentials.asciidoc)| +         | The credentials module is used to exchange the credentials token that has to be used by parties for authorization of requests        |
 [Versions](https://github.com/ocpi/ocpi/blob/2.2.1/version_information_endpoint.asciidoc) | +         |  Via this module, clients can learn which versions of OCPI a server supports, and which modules it supports for each of the versions  |
