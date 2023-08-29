@@ -23,7 +23,7 @@
 - [Requirements](#requirements)
 - [Changelog](#changelog)
 - [Getting Started](#getting-started)
-- 
+
 ## Field of use
 Open Charge Point Interface (OCPI) is an open protocol used for connections between charging station operators and service providers. Simply put, this protocol facilitates automated roaming for EV drivers between different EV charging networks. This interface supports the affordability and accessibility of charging infrastructure for EV owners, allowing drivers to charge across different networks. The protocol provides accurate data on charging stations, such as location, accessibility and pricing, and takes into account real-time billing and mobile access to charging stations.
 The OCPI protocol is managed and maintained by the EVRoaming Foundation, making it freely available to software vendors.
