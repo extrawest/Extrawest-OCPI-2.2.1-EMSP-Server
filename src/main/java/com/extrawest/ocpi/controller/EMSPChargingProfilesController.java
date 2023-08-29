@@ -4,6 +4,7 @@ import com.extrawest.ocpi.model.AbstractProfileResult;
 import com.extrawest.ocpi.model.ResponseFormat;
 import com.extrawest.ocpi.model.dto.request.ActiveChargingProfileRequestDTO;
 import com.extrawest.ocpi.service.EMSPChargingProfilesService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/chargingProfiles")
+@Tag(name="EmspChargingProfiles")
 public class EMSPChargingProfilesController {
 
     protected final EMSPChargingProfilesService emspChargingProfilesService;

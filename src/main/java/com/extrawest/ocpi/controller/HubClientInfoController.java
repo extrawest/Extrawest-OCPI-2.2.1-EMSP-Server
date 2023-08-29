@@ -2,6 +2,7 @@ package com.extrawest.ocpi.controller;
 
 import com.extrawest.ocpi.model.dto.ClientInfoDTO;
 import com.extrawest.ocpi.service.HubClientInfoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hub/api/2.2.1/hubClientInfo")
+@Tag(name = "HubClientInfo")
 public abstract class HubClientInfoController {
 
     protected final HubClientInfoService hubClientInfoService;
@@ -33,11 +35,10 @@ public abstract class HubClientInfoController {
     @GetMapping("/{date_from}/{date_to}/{offset}/{limit}")
     public ResponseEntity<List<ClientInfoDTO>> getClientInfoList(
             @PathVariable(value = "date_from", required = false) LocalDateTime dateFrom,
-            @PathVariable (value = "date_to", required = false) LocalDateTime dateTo,
-            @PathVariable (value = "offset", required = false) Integer offset,
-            @PathVariable (value = "limit", required = false) Integer limit
-    ) {
+            @PathVariable(value = "date_to", required = false) LocalDateTime dateTo,
+            @PathVariable(value = "offset", required = false) Integer offset,
+            @PathVariable(value = "limit", required = false) Integer limit) {
         return ResponseEntity.ok(hubClientInfoService.getClientInfoList(dateFrom, dateTo, offset, limit));
-    };
+    }
 
 }

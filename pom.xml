@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.extrawest</groupId>
-    <artifactId>extrawest-ocpi-2.2.1-emsp-server</artifactId>
-    <version>2023.7.12-SNAPSHOT</version>
+    <artifactId>Extrawest-OCPI-2.2.1-EMSP-Server</artifactId>
+    <version>2023.8.29</version>
 
     <name>Extrawest-OCPI-2.2.1-EMSP-Server</name>
     <description>Extrawest-OCPI-2.2.1-EMSP-Server</description>
@@ -19,8 +19,8 @@
     </licenses>
     <developers>
         <developer>
-            <name>Vladyslav Tertyshnyi</name>
-            <email>vladyslav.tertyshnyi@extrawest.com</email>
+            <name>Galyna Klymenko</name>
+            <email>galyna.klymenko@extrawest.com</email>
             <organization>extrawest</organization>
             <organizationUrl>https://www.extrawest.com/</organizationUrl>
         </developer>
@@ -160,7 +160,7 @@
                 <configuration>
                     <jreleaser>
                         <project>
-                            <description>OCPP operation tester for the Charge Points</description>
+                            <description>OCPI OCPI library for eMSP operations</description>
                             <website>https://github.com/extrawest/Extrawest-OCPI-2.2.1-EMSP-Server/tree/main</website>
                             <docsUrl>https://github.com/extrawest/Extrawest-OCPI-2.2.1-EMSP-Server/tree/main</docsUrl>
                             <license>APACHE-2.0</license>

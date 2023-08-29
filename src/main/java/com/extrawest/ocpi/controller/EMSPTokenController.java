@@ -4,6 +4,7 @@ import com.extrawest.ocpi.model.dto.TokenDTO;
 import com.extrawest.ocpi.model.dto.request.LocationReferencesRequestDTO;
 import com.extrawest.ocpi.model.dto.response.AuthorizationInfoResponseDTO;
 import com.extrawest.ocpi.service.EMSPTokenService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/tokens")
+@Tag(name="EmspToken")
 public class EMSPTokenController {
 
     protected final EMSPTokenService emspTokenService;

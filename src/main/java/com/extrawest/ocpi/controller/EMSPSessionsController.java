@@ -2,6 +2,7 @@ package com.extrawest.ocpi.controller;
 
 import com.extrawest.ocpi.model.dto.SessionDTO;
 import com.extrawest.ocpi.service.EMSPSessionsService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/sessions")
+@Tag(name="EmspSessions")
 public class EMSPSessionsController {
 
     protected final EMSPSessionsService emspSessionsService;
