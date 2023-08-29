@@ -6,8 +6,6 @@ import com.extrawest.ocpi.model.vo.Price;
 import com.extrawest.ocpi.model.vo.TariffElement;
 import com.extrawest.ocpi.model.enums.TariffType;
 import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

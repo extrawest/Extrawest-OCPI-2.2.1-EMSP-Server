@@ -3,6 +3,7 @@ package com.extrawest.ocpi.controller;
 import com.extrawest.ocpi.model.AbstractDomainObject;
 import com.extrawest.ocpi.model.dto.LocationDTO;
 import com.extrawest.ocpi.service.EMSPLocationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/locations")
+@Tag(name="EmspLocation")
 public class EMSPLocationController {
 
     protected final EMSPLocationService emspLocationService;

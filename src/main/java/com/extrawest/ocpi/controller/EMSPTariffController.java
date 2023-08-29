@@ -2,6 +2,7 @@ package com.extrawest.ocpi.controller;
 
 import com.extrawest.ocpi.model.dto.TariffDTO;
 import com.extrawest.ocpi.service.EMSPTariffService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/tariffs")
+@Tag(name="EmspTariff")
 public class EMSPTariffController {
 
     protected final EMSPTariffService emspTariffService;
