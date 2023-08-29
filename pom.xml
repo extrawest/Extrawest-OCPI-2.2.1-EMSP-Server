@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.extrawest</groupId>
-    <artifactId>Extrawest-OCPI-2.2.1-EMSP-Server</artifactId>
-    <version>2023.7.12</version>
+    <artifactId>extrawest-ocpi-2.2.1-emsp-server</artifactId>
+    <version>2023.7.12-SNAPSHOT</version>
 
     <name>Extrawest-OCPI-2.2.1-EMSP-Server</name>
     <description>Extrawest-OCPI-2.2.1-EMSP-Server</description>
@@ -225,8 +225,8 @@
 
         <!-- GitHub Releases -->
         <snapshotRepository>
-            <id>github-releases</id>
-            <url>https://maven.pkg.github.com/extrawest/Extrawest-OCPI-2.2.1-EMSP-Server</url>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/extrawest/extrawest-ocpi-2.2.1-emsp-server</url>
             <name>GitHub Package Registry</name>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
