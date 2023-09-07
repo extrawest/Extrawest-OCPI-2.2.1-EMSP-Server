@@ -138,7 +138,12 @@ Module | v2023.7.12 | Description
 [Credentials](https://github.com/ocpi/ocpi/blob/2.2.1/credentials.asciidoc)| +         | The credentials module is used to exchange the credentials token that has to be used by parties for authorization of requests        |
 [Versions](https://github.com/ocpi/ocpi/blob/2.2.1/version_information_endpoint.asciidoc) | +         |  Via this module, clients can learn which versions of OCPI a server supports, and which modules it supports for each of the versions  |
 
-Plans for next releases is to enrich Credentials with OCPI Registration process
+Roadmap:
+
+Functionality | Q7 2023                      |                                                                                                                     
+------------ |------------------------------|
+[Authentification](https://github.com/ocpi/ocpi/blob/2.2.1/credentials.asciidoc)|
+[Authorization](https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#transport_and_format_authorization_header) |
 
 License
 =======
