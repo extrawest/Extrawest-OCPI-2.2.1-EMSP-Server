@@ -1,10 +1,10 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.request.CommandResultRequestDTO;
+import com.extrawest.ocpi.model.dto.request.CommandResult;
 import com.extrawest.ocpi.model.enums.CommandType;
 
 public interface EMSPCommandsService {
 
-    void postCommand(CommandResultRequestDTO commandResultRequestDTO, CommandType commandType, String uniqueId);
+    void postCommand(CommandResult commandResultRequestDTO, CommandType commandType, String uniqueId);
 
 }

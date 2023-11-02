@@ -1,8 +1,8 @@
 package com.extrawest.ocpi.model.vo;
 
 import com.extrawest.ocpi.model.enums.TokenType;
-import com.extrawest.ocpi.validation.Validatable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 /**
@@ -16,11 +16,12 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PublishTokenType implements Validatable {
+public class PublishTokenType{
 
     /**
      * Unique ID by which this Token can be identified.
      */
+    @Size(max = 36)
     @JsonProperty("uid")
     private String uid;
     /**
@@ -31,22 +32,20 @@ public class PublishTokenType implements Validatable {
     /**
      * Visual readable number/identification as printed on the Token (RFID card).
      */
+    @Size(max = 64)
     @JsonProperty("visual_number")
     private String visualNumber;
     /**
-     * Issuing company, most of the times the name of the company printed on the token (RFID card),
+     * Issuing company, most of the time the name of the company printed on the token (RFID card),
      * not necessarily the eMSP
      */
+    @Size(max = 64)
     @JsonProperty("issuer")
     private String issuer;
     /**
      * This ID groups a couple of tokens. This can be used to make two or more tokens work as one.
      */
+    @Size(max = 36)
     @JsonProperty("group_id")
     private String groupId;
-
-    @Override
-    public boolean validate() {
-        return true;
-    }
 }

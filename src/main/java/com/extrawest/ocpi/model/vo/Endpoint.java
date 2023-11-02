@@ -1,67 +1,33 @@
 package com.extrawest.ocpi.model.vo;
 
+import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.model.enums.InterfaceRole;
-import com.extrawest.ocpi.validation.*;
 import com.extrawest.ocpi.model.enums.ModuleID;
-import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
-@Getter
-@ToString
-@EqualsAndHashCode(callSuper = false)
+@Data
 @NoArgsConstructor
-public class Endpoint implements Validatable {
-
-    @JsonIgnore
-    private final Validator urlValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string255())
-                    .build();
-    @JsonIgnore
-    private final Validator<Object> requiredValidator = new RequiredValidator();
-
+public class Endpoint implements OcpiRequestData, OcpiResponseData {
     /**
      * Endpoint identifier.
      */
+    @NotNull
     @JsonProperty("identifier")
     private ModuleID identifier;
     /**
      * Interface role this endpoint implements.
      */
+    @NotNull
     @JsonProperty("role")
     private InterfaceRole role;
     /**
      * URL to the endpoint.
      */
+    @NotBlank
     @JsonProperty("url")
     private String url;
-
-    public void setIdentifier(ModuleID identifier) {
-        requiredValidator.validate(identifier);
-        this.identifier = identifier;
-    }
-
-    public void setRole(InterfaceRole role) {
-        requiredValidator.validate(role);
-        this.role = role;
-    }
-
-    public void setUrl(String url) {
-        urlValidator.validate(url);
-        this.url = url;
-    }
-
-    @Override
-    public boolean validate() {
-        return urlValidator.safeValidate(url)
-                && requiredValidator.safeValidate(role)
-                && requiredValidator.safeValidate(identifier);
-    }
 }

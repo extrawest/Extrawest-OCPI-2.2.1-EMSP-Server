@@ -1,45 +1,27 @@
 package com.extrawest.ocpi.model.vo;
 
+import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.model.enums.ImageCategory;
 import com.extrawest.ocpi.validation.*;
 import com.extrawest.ocpi.validation.*;
 import com.extrawest.ocpi.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
-@Getter
-@ToString
-@EqualsAndHashCode(callSuper = false)
+@Data
 @NoArgsConstructor
-public class Image implements Validatable {
-
-    @JsonIgnore
-    private final Validator urlValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string255())
-                    .build();
-    @JsonIgnore
-    private final Validator thumbnailValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string255())
-                    .build();
-    @JsonIgnore
-    private final Validator typeValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string4())
-                    .build();
-    @JsonIgnore
-    private final Validator requiredValidator = new RequiredValidator();
+public class Image implements OcpiResponseData, OcpiRequestData {
 
     /**
      * URL from where the image data can be fetched through a web browser.
      */
+    @NotBlank
     @JsonProperty("url")
     private String url;
     /**
@@ -51,56 +33,26 @@ public class Image implements Validatable {
     /**
      * Describes what the image is used for.
      */
+    @NotNull
     @JsonProperty("category")
     private ImageCategory category;
     /**
      * Image type like: gif, jpeg, png, svg.
      */
+    @NotBlank
+    @Size(max = 4)
     @JsonProperty("type")
     private String type;
     /**
      * Width of the full scale image.
      */
+    @Max(5)
     @JsonProperty("width")
     private String width;
     /**
      * Height of the full scale image.
      */
+    @Max(5)
     @JsonProperty("height")
     private String height;
-
-    public void setUrl(String url) {
-        urlValidator.validate(url);
-        this.url = url;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        thumbnailValidator.validate(thumbnail);
-        this.thumbnail = thumbnail;
-    }
-
-    public void setCategory(ImageCategory category) {
-        requiredValidator.validate(category);
-        this.category = category;
-    }
-
-    public void setType(String type) {
-        typeValidator.validate(type);
-        this.type = type;
-    }
-
-    public void setWidth(String width) {
-        this.width = width;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    @Override
-    public boolean validate() {
-        return urlValidator.safeValidate(url)
-                && requiredValidator.safeValidate(category)
-                && typeValidator.safeValidate(type);
-    }
 }

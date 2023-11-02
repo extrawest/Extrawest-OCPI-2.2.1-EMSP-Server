@@ -1,79 +1,71 @@
 package com.extrawest.ocpi.model.dto;
 
-import com.extrawest.ocpi.model.Tariff;
+import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.model.enums.AuthMethod;
 import com.extrawest.ocpi.model.vo.*;
 import com.extrawest.ocpi.util.Constants;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CdrDTO {
-    @NotBlank
-    @Size(min = 1, max = 2)
-    @Pattern(regexp = Constants.ASCII_REGEXP)
-    @JsonProperty("country_code")
-    @NotBlank
-    @Size(min = 1, max = 3)
-    @Pattern(regexp = Constants.ASCII_REGEXP)
-    private String countryCode;
-    @JsonProperty("party_id")
-    private String partyId;
-    @NotBlank
-    @Size(min = 1, max = 39)
-    @Pattern(regexp = Constants.ASCII_REGEXP)
-    private String id;
-    @NotBlank
+public class CdrDTO extends ClientOwnedObject implements OcpiRequestData, OcpiResponseData {
+    @NotNull
     @JsonProperty("start_date_time")
     private LocalDateTime startDateTime;
-    @NotBlank
+    @NotNull
     @JsonProperty("end_date_time")
     private LocalDateTime endDateTime;
     @Size(min = 1, max = 36)
     @JsonProperty("session_id")
     private String sessionId;
-    @NotBlank
+    @NotNull
     @JsonProperty("cdr_token")
     private CdrToken cdrToken;
-    @NotBlank
+    @NotNull
     @JsonProperty("auth_method")
     private AuthMethod authMethod;
     @Size(min = 1, max = 36)
     @JsonProperty("authorization_reference")
     private String authorizationReference;
-    @NotBlank
+    @NotNull
     @JsonProperty("cdr_location")
     private CdrLocation cdrLocation;
     @JsonProperty("meter_id")
     private String meterId;
-    private String currency;
-    private List<Tariff> tariffs;
     @NotBlank
+    @Size(max = 3)
+    private String currency;
+    private List<TariffDTO> tariffs;
+    @NotEmpty
     @JsonProperty("charging_periods")
     private List<ChargingPeriod> chargingPeriods;
     @JsonProperty("signed_data")
     private SignedData signedData;
-    @NotBlank
+    @NotNull
     @JsonProperty("total_cost")
     private Price totalCost;
     @JsonProperty("total_fixed_cost")
     private Price totalFixedCost;
-    @NotBlank
+    @NotNull
     @JsonProperty("total_energy")
     private Float totalEnergy;
     @JsonProperty("total_energy_cost")
     private Price totalEnergyCost;
-    @NotBlank
+    @NotNull
     @JsonProperty("total_time")
     private Float totalTime;
     @JsonProperty("total_time_cost")
@@ -97,7 +89,4 @@ public class CdrDTO {
     private String creditReferenceId;
     @JsonProperty("home_charging_compensation")
     private Boolean homeChargingCompensation;
-    @NotBlank
-    @JsonProperty("last_updated")
-    private LocalDateTime lastUpdated;
 }

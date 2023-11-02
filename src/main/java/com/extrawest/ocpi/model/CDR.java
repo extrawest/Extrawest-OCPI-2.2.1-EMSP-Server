@@ -263,14 +263,14 @@ public class CDR implements Validatable {
     private Price totalReservationCost;
 
     /**
-     * Optional remark, can be used to provide additional human readable information to the CDR,
+     * Optional remark, can be used to provide additional human-readable information to the CDR,
      * for example: reason why a transaction was stopped.
      */
     @JsonProperty("remark")
     private String remark;
 
     /**
-     * This field can be used to reference an invoice, that will later be send for this CDR.
+     * This field can be used to reference an invoice, that will later be sent for this CDR.
      * Making it easier to link a CDR to a given invoice. Maybe even group CDRs that will be on the same invoice.
      */
     @JsonProperty("invoice_reference_id")
@@ -446,13 +446,13 @@ public class CDR implements Validatable {
                 && requiredValidator.safeValidate(startDateTime)
                 && requiredValidator.safeValidate(endDateTime)
                 && requiredValidator.safeValidate(cdrToken)
-                && cdrToken.validate()
+//                && cdrToken.validate()
                 && requiredValidator.safeValidate(authMethod)
                 && requiredValidator.safeValidate(cdrLocation)
-                && cdrLocation.validate()
+//                && cdrLocation.validate()
                 && currencyValidator.safeValidate(currency)
                 && chargingPeriodsValidator.safeValidate(chargingPeriods)
-                && chargingPeriods.stream().filter(ChargingPeriod::validate).count() == chargingPeriods.size()
+//                && chargingPeriods.stream().filter(ChargingPeriod::validate).count() == chargingPeriods.size()
                 && requiredValidator.safeValidate(totalCost)
                 && requiredValidator.safeValidate(totalEnergy)
                 && requiredValidator.safeValidate(totalTime)

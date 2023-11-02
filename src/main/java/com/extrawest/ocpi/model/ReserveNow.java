@@ -122,7 +122,7 @@ public class ReserveNow extends AbstractCommand implements Validatable {
     public boolean validate() {
         return responseUrlValidator.safeValidate(responseUrl)
                 && requiredValidator.safeValidate(token)
-                && token.validate()
+//                && token.validate()
                 && requiredValidator.safeValidate(expiryDate)
                 && reservationIdValidator.safeValidate(reservationId)
                 && locationIdValidator.safeValidate(locationId);

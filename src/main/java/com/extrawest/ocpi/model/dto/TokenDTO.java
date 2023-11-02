@@ -1,5 +1,7 @@
 package com.extrawest.ocpi.model.dto;
 
+import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.model.enums.ProfileType;
 import com.extrawest.ocpi.model.enums.TokenType;
 import com.extrawest.ocpi.model.enums.WhitelistType;
@@ -7,6 +9,7 @@ import com.extrawest.ocpi.model.vo.EnergyContract;
 import com.extrawest.ocpi.util.Constants;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -18,7 +21,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TokenDTO {
+public class TokenDTO implements OcpiResponseData, OcpiRequestData {
     @NotBlank
     @Size(min = 1, max = 2)
     @Pattern(regexp = Constants.ASCII_REGEXP)
@@ -34,7 +37,7 @@ public class TokenDTO {
     @Pattern(regexp = Constants.ASCII_REGEXP)
     @JsonProperty("uid")
     private String uid;
-    @NotBlank
+    @NotNull
     @JsonProperty("type")
     private TokenType type;
     @NotBlank
@@ -52,10 +55,10 @@ public class TokenDTO {
     @Size(min = 1, max = 36)
     @JsonProperty("group_id")
     private String groupId;
-    @NotBlank
+    @NotNull
     @JsonProperty("valid")
     private Boolean valid;
-    @NotBlank
+    @NotNull
     @JsonProperty("whitelist")
     private WhitelistType whitelist;
     @Size(min = 1, max = 2)
@@ -65,7 +68,7 @@ public class TokenDTO {
     private ProfileType defaultProfileType;
     @JsonProperty("energy_contract")
     private EnergyContract energyContract;
-    @NotBlank
+    @NotNull
     @JsonProperty("last_updated")
     private LocalDateTime lastUpdated;
 }

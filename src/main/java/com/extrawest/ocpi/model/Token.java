@@ -7,83 +7,29 @@ import com.extrawest.ocpi.model.vo.EnergyContract;
 import com.extrawest.ocpi.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@ToString
-@EqualsAndHashCode(callSuper = false)
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class Token implements Validatable {
-
-    @JsonIgnore
-    private final Validator requiredValidator = new RequiredValidator();
-
-    @JsonIgnore
-    private final Validator countryCodeValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string2())
-                    .build();
-
-    @JsonIgnore
-    private final Validator partyIdValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string3())
-                    .build();
-
-    @JsonIgnore
-    private final Validator uidValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string36())
-                    .build();
-
-    @JsonIgnore
-    private final Validator contractIdValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string36())
-                    .build();
-
-    @JsonIgnore
-    private final Validator visualNumberValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string64())
-                    .build();
-
-    @JsonIgnore
-    private final Validator issuerValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string64())
-                    .build();
-
-    @JsonIgnore
-    private final Validator groupIdValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string36())
-                    .build();
-
-    @JsonIgnore
-    private final Validator languageValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string2())
-                    .build();
-
+public class Token {
     /**
      * ISO-3166 alpha-2 country code of the MSP that 'owns' this Token.
      */
+    @NotBlank
+    @Size(min = 2, max = 2)
     @JsonProperty("country_code")
     private String countryCode;
     /**
      * ID of the eMSP that 'owns' this Token (following the ISO-15118 standard).
      */
+    @NotBlank
+    @Size(min = 3, max = 3)
     @JsonProperty("party_id")
     private String partyId;
 
@@ -94,12 +40,15 @@ public class Token implements Validatable {
      * a requirement. If this is a APP_USER or AD_HOC_USER Token, it will be a uniquely, by the eMSP, generated ID.
      * This field is named uid instead of id to prevent confusion with: contract_id.
      */
+    @NotBlank
+    @Size(max = 36)
     @JsonProperty("uid")
     private String uid;
 
     /**
      * Type of the token
      */
+    @NotNull
     @JsonProperty("type")
     private TokenType type;
 
@@ -108,6 +57,8 @@ public class Token implements Validatable {
      * Recommended to follow the specification for eMA ID from "eMI3 standard version
      * V1.0" (<a href="http://emi3group.com/documents-links/">...</a>) "Part 2: business objects."
      */
+    @NotBlank
+    @Size(max = 36)
     @JsonProperty("contract_id")
     private String contractId;
 
@@ -120,6 +71,8 @@ public class Token implements Validatable {
     /**
      * Issuing company, most of the time the name of the company printed on the token (RFID card), not necessarily the eMSP.
      */
+    @NotBlank
+    @Size(max = 64)
     @JsonProperty("issuer")
     private String issuer;
 
@@ -129,18 +82,21 @@ public class Token implements Validatable {
      * are given to the EV-driver. Beware that OCPP 1.5/1.6 only support group_ids (it is called parentId in OCPP
      * 1.5/1.6) with a maximum length of 20.
      */
+    @Size(max = 36)
     @JsonProperty("group_id")
     private String groupId;
 
     /**
      * Is this Token valid
      */
+    @NotNull
     @JsonProperty("valid")
     private Boolean valid;
 
     /**
      * Indicates what type of white-listing is allowed.
      */
+    @NotNull
     @JsonProperty("whitelist")
     private WhitelistType whitelist;
 
@@ -149,6 +105,7 @@ public class Token implements Validatable {
      * If the language is not provided or not supported then the CPO is free to choose its own language
      */
     @JsonProperty("language")
+    @Size(min = 2, max = 2)
     private String language;
 
     /**
@@ -171,87 +128,7 @@ public class Token implements Validatable {
     /**
      * Timestamp when this Token was last updated (or created).
      */
+    @NotNull
     @JsonProperty("last_updated")
     private LocalDateTime lastUpdated;
-
-    public void setCountryCode(String countryCode) {
-        countryCodeValidator.validate(countryCode);
-        this.countryCode = countryCode;
-    }
-
-    public void setPartyId(String partyId) {
-        partyIdValidator.validate(partyId);
-        this.partyId = partyId;
-    }
-
-    public void setUid(String uid) {
-        uidValidator.validate(uid);
-        this.uid = uid;
-    }
-
-    public void setType(TokenType type) {
-        requiredValidator.validate(type);
-        this.type = type;
-    }
-
-    public void setContractId(String contractId) {
-        contractIdValidator.validate(contractId);
-        this.contractId = contractId;
-    }
-
-    public void setVisualNumber(String visualNumber) {
-        visualNumberValidator.validate(visualNumber);
-        this.visualNumber = visualNumber;
-    }
-
-    public void setIssuer(String issuer) {
-        issuerValidator.validate(issuer);
-        this.issuer = issuer;
-    }
-
-    public void setGroupId(String groupId) {
-        groupIdValidator.validate(groupId);
-        this.groupId = groupId;
-    }
-
-    public void setValid(Boolean valid) {
-        requiredValidator.validate(valid);
-        this.valid = valid;
-    }
-
-    public void setWhitelist(WhitelistType whitelist) {
-        requiredValidator.validate(whitelist);
-        this.whitelist = whitelist;
-    }
-
-    public void setLanguage(String language) {
-        languageValidator.validate(language);
-        this.language = language;
-    }
-
-    public void setDefaultProfileType(ProfileType defaultProfileType) {
-        this.defaultProfileType = defaultProfileType;
-    }
-
-    public void setEnergyContract(EnergyContract energyContract) {
-        this.energyContract = energyContract;
-    }
-
-    public void setLastUpdated(LocalDateTime lastUpdated) {
-        requiredValidator.validate(lastUpdated);
-        this.lastUpdated = lastUpdated;
-    }
-
-    @Override
-    public boolean validate() {
-        return countryCodeValidator.safeValidate(countryCode)
-                && partyIdValidator.safeValidate(partyId)
-                && uidValidator.safeValidate(uid)
-                && requiredValidator.safeValidate(type)
-                && contractIdValidator.safeValidate(contractId)
-                && issuerValidator.safeValidate(issuer)
-                && requiredValidator.safeValidate(valid)
-                && requiredValidator.safeValidate(whitelist)
-                && languageValidator.safeValidate(lastUpdated);
-    }
 }

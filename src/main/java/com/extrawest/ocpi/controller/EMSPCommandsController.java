@@ -1,12 +1,14 @@
 package com.extrawest.ocpi.controller;
 
-import com.extrawest.ocpi.model.dto.request.CommandResultRequestDTO;
+import com.extrawest.ocpi.model.dto.request.CommandResult;
 import com.extrawest.ocpi.model.enums.CommandType;
 import com.extrawest.ocpi.service.EMSPCommandsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/emsp/api/2.2.1/commands")
@@ -29,12 +31,17 @@ public class EMSPCommandsController {
      * @param uniqueId It is advised to make this URL unique for every request to differentiate simultaneous commands,
      * for example by adding a unique id as a URL segment.
      */
-    @PostMapping("/{commandType}/{uniqueId}")
+    @PostMapping("/{command_type}/{unique_id}")
     public void postCommand(
-            @RequestBody @Valid CommandResultRequestDTO commandResult,
-            @PathVariable CommandType commandType,
-            @PathVariable String uniqueId
+            @RequestBody @Valid CommandResult commandResult,
+            @PathVariable(value = "command_type") CommandType commandType,
+            @PathVariable(value = "unique_id") String uniqueId
     ) {
         emspCommandsService.postCommand(commandResult, commandType, uniqueId);
-    };
+    }
+
+    @GetMapping("/{command_type}")
+    public LocalDateTime get() {
+        return LocalDateTime.now();
+    }
 }

@@ -1,48 +1,18 @@
 package com.extrawest.ocpi.model.vo;
 
+import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.model.enums.DayOfWeek;
 import com.extrawest.ocpi.model.enums.ReservationRestrictionType;
-import com.extrawest.ocpi.validation.Validatable;
-import com.extrawest.ocpi.validation.ValidationRules;
-import com.extrawest.ocpi.validation.Validator;
-import com.extrawest.ocpi.validation.ValidatorBuilder;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Digits;
 import lombok.*;
 
 import java.util.List;
 
-@Getter
-@ToString
-@EqualsAndHashCode(callSuper = false)
+@Data
 @NoArgsConstructor
-public class TariffRestrictions implements Validatable {
-
-    @JsonIgnore
-    private final Validator startTimeValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string5())
-                    .build();
-
-    @JsonIgnore
-    private final Validator endTimeValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string5())
-                    .build();
-
-    @JsonIgnore
-    private final Validator startDateValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string10())
-                    .build();
-
-    @JsonIgnore
-    private final Validator endDateValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string10())
-                    .build();
-
+public class TariffRestrictions implements OcpiRequestData, OcpiResponseData {
     /**
      * Start time of day in local time, the time zone is defined in the time_zone field of the Location,
      * for example 13:30, valid from this time of the day. Must be in 24h
@@ -150,69 +120,4 @@ public class TariffRestrictions implements Validatable {
      * duration of the reservation.
      */
     private ReservationRestrictionType reservation;
-
-    public void setStart_time(String startTime) {
-        startTimeValidator.validate(startTime);
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(String endTime) {
-        endTimeValidator.validate(endTime);
-        this.endTime = endTime;
-    }
-
-    public void setStartDate(String startDate) {
-        startDateValidator.validate(startDate);
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(String endDate) {
-        endDateValidator.validate(endDate);
-        this.endDate = endDate;
-    }
-
-    public void setMinKwh(Float minKwh) {
-        this.minKwh = minKwh;
-    }
-
-    public void setMaxKwh(Float maxKwh) {
-        this.maxKwh = maxKwh;
-    }
-
-    public void setMinCurrent(Float minCurrent) {
-        this.minCurrent = minCurrent;
-    }
-
-    public void setMaxCurrent(Float maxCurrent) {
-        this.maxCurrent = maxCurrent;
-    }
-
-    public void setMinPower(Float minPower) {
-        this.minPower = minPower;
-    }
-
-    public void setMaxPower(Float maxPower) {
-        this.maxPower = maxPower;
-    }
-
-    public void setMinDuration(Integer minDuration) {
-        this.minDuration = minDuration;
-    }
-
-    public void setMaxDuration(Integer maxDuration) {
-        this.maxDuration = maxDuration;
-    }
-
-    public void setDayOfWeek(List<DayOfWeek> dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public void setReservation(ReservationRestrictionType reservation) {
-        this.reservation = reservation;
-    }
-
-    @Override
-    public boolean validate() {
-        return true;
-    }
 }

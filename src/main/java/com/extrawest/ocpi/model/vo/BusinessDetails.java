@@ -1,8 +1,8 @@
 package com.extrawest.ocpi.model.vo;
 
-import com.extrawest.ocpi.validation.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,19 +12,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class BusinessDetails implements Validatable {
-
-    @JsonIgnore
-    private final Validator requiredValidator = new RequiredValidator();
-    @JsonIgnore
-    private final Validator websiteValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string255())
-                    .build();
+public class BusinessDetails{
 
     /**
      * Name of the operator.
      */
+    @NotBlank
+    @Size(max = 100)
     @JsonProperty("name")
     private String name;
     /**
@@ -37,23 +31,4 @@ public class BusinessDetails implements Validatable {
      */
     @JsonProperty("logo")
     private Image logo;
-
-    public void setName(String name) {
-        requiredValidator.validate(name);
-        this.name = name;
-    }
-
-    public void setWebsite(String website) {
-        websiteValidator.validate(website);
-        this.website = website;
-    }
-
-    public void setLogo(Image logo) {
-        this.logo = logo;
-    }
-
-    @Override
-    public boolean validate() {
-        return requiredValidator.safeValidate(name);
-    }
 }

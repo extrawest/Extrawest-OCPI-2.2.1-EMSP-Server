@@ -165,7 +165,7 @@ public class Location extends AbstractDomainObject implements Validatable {
      * List of EVSEs that belong to this Location.
      */
     @JsonProperty("evses")
-    private List<EVSE> evses;
+    private List<Evse> evses;
     /**
      * Human-readable directions on how to reach the location.
      */
@@ -293,7 +293,7 @@ public class Location extends AbstractDomainObject implements Validatable {
         this.parkingType = parkingType;
     }
 
-    public void setEvses(List<EVSE> evses) {
+    public void setEvses(List<Evse> evses) {
         this.evses = evses;
     }
 
@@ -353,7 +353,7 @@ public class Location extends AbstractDomainObject implements Validatable {
                 && cityValidator.safeValidate(city)
                 && countryValidator.safeValidate(country)
                 && requiredValidator.safeValidate(coordinates)
-                && coordinates.validate()
+//                && coordinates.validate()
                 && timeZoneValidator.safeValidate(timeZone)
                 && requiredValidator.safeValidate(lastUpdated);
     }

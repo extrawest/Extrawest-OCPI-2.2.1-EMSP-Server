@@ -1,9 +1,9 @@
 package com.extrawest.ocpi.model;
 
+import com.extrawest.ocpi.model.dto.TariffElementDTO;
 import com.extrawest.ocpi.model.vo.EnergyMix;
 import com.extrawest.ocpi.model.vo.DisplayText;
 import com.extrawest.ocpi.model.vo.Price;
-import com.extrawest.ocpi.model.vo.TariffElement;
 import com.extrawest.ocpi.model.enums.TariffType;
 import com.extrawest.ocpi.validation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -107,7 +107,7 @@ public class Tariff implements Validatable {
      * List of Tariff Elements.
      */
     @JsonProperty("elements")
-    private List<TariffElement> elements;
+    private List<TariffElementDTO> elements;
     /**
      * The time when this tariff becomes active, in UTC, time_zone field of the Location can be used to convert
      * to local time. Typically used for a new tariff that is already given with the location, before it becomes active.
@@ -136,7 +136,7 @@ public class Tariff implements Validatable {
                   String partyId,
                   String id,
                   String currency,
-                  List<TariffElement> elements,
+                  List<TariffElementDTO> elements,
                   LocalDateTime lastUpdated) {
         countryCodeValidator.validate(countryCode);
         partyIdValidator.validate(partyId);
@@ -192,7 +192,7 @@ public class Tariff implements Validatable {
         this.maxPrice = maxPrice;
     }
 
-    public void setElements(List<TariffElement> elements) {
+    public void setElements(List<TariffElementDTO> elements) {
         elementsValidator.validate(elements);
         this.elements = elements;
     }
@@ -221,7 +221,7 @@ public class Tariff implements Validatable {
                 && idValidator.safeValidate(id)
                 && currencyValidator.safeValidate(currency)
                 && elementsValidator.safeValidate(elements)
-                && elements.stream().filter(TariffElement::validate).count() == elements.size()
+//                && elements.stream().filter(TariffElementDTO::validate).count() == elements.size()
                 && requiredValidator.safeValidate(lastUpdated);
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EMSPVersionService {
 
-    List<VersionResponseDTO> getVersion();
+    List<VersionResponseDTO> getVersions();
     VersionDetailsResponseDTO getVersionDetails(VersionNumber version);
 
 }

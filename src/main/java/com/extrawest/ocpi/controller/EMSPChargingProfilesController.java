@@ -40,7 +40,7 @@ public class EMSPChargingProfilesController {
 
     /**
      * Receiver (typically CPO) can send an updated ActiveChargingProfile when other inputs have made changes to
-     * existing profile. When the Receiver (typically CPO) sends a update profile to the EVSE, for an other reason
+     * existing profile. When the Receiver (typically CPO) sends a update profile to the EVSE, for other reason
      * then the Sender (Typically SCSP) asking, the Sender SHALL post an update to this interface. When a local
      * input influence the ActiveChargingProfile in the EVSE AND the Receiver (typically CPO) is made aware of this,
      * the Receiver SHALL post an update to this interface.

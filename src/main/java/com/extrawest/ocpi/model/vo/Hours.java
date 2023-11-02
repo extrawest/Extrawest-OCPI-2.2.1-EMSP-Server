@@ -5,6 +5,7 @@ import com.extrawest.ocpi.validation.RequiredValidator;
 import com.extrawest.ocpi.validation.Validator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,14 +20,11 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Hours implements Validatable {
-
-    @JsonIgnore
-    private final Validator requiredValidator = new RequiredValidator();
-
+public class Hours{
     /**
      * True to represent 24 hours a day and 7 days a week, except the given exceptions.
      */
+    @NotNull
     @JsonProperty("twentyfourseven")
     private Boolean twentyFourSeven;
     /**
@@ -47,26 +45,4 @@ public class Hours implements Validatable {
      */
     @JsonProperty("exceptional_closings")
     private List<ExceptionalPeriod> exceptionalClosings;
-
-    public void setTwentyFourSeven(Boolean twentyFourSeven) {
-        requiredValidator.validate(twentyFourSeven);
-        this.twentyFourSeven = twentyFourSeven;
-    }
-
-    public void setRegularHours(List<RegularHours> regularHours) {
-        this.regularHours = regularHours;
-    }
-
-    public void setExceptionalOpenings(List<ExceptionalPeriod> exceptionalOpenings) {
-        this.exceptionalOpenings = exceptionalOpenings;
-    }
-
-    public void setExceptionalClosings(List<ExceptionalPeriod> exceptionalClosings) {
-        this.exceptionalClosings = exceptionalClosings;
-    }
-
-    @Override
-    public boolean validate() {
-        return requiredValidator.safeValidate(twentyFourSeven);
-    }
 }

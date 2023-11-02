@@ -112,7 +112,7 @@ public class StartSession extends AbstractCommand implements Validatable {
     public boolean validate() {
         return requiredValidator.safeValidate(responseUrl)
                 && requiredValidator.safeValidate(token)
-                && token.validate()
+//                && token.validate()
                 && locationIdValidator.safeValidate(locationId);
     }
 }

@@ -1,5 +1,7 @@
 package com.extrawest.ocpi.model.dto.request;
 
+import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.util.Constants;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
@@ -14,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LocationReferencesRequestDTO {
+public class LocationReferences implements OcpiResponseData, OcpiRequestData {
     @NotBlank
     @Size(min = 1, max = 36)
     @JsonProperty("location_id")

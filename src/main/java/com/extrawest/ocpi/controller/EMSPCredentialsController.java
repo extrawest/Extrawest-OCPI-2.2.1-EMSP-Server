@@ -33,9 +33,7 @@ public class EMSPCredentialsController {
      * @param credentialsDTO - credentials
      */
     @PostMapping
-    public void postCredentials(
-            @RequestBody @Valid CredentialsDTO credentialsDTO
-    ) {
+    public void postCredentials(@RequestBody @Valid CredentialsDTO credentialsDTO) {
         emspCredentialsService.postCredentials(credentialsDTO);
     };
 
@@ -44,9 +42,7 @@ public class EMSPCredentialsController {
      * @param credentialsDTO - credentials
      */
     @PutMapping
-    public void putCredentials(
-            @RequestBody @Valid CredentialsDTO credentialsDTO
-    ) {
+    public void putCredentials(@RequestBody @Valid CredentialsDTO credentialsDTO) {
         emspCredentialsService.putCredentials(credentialsDTO);
     };
 
@@ -55,9 +51,7 @@ public class EMSPCredentialsController {
      * @param credentialsDTO - credentials
      */
     @DeleteMapping
-    public void deleteCredentials(
-            @RequestBody @Valid CredentialsDTO credentialsDTO
-    ) {
+    public void deleteCredentials(@RequestBody @Valid CredentialsDTO credentialsDTO) {
         emspCredentialsService.deleteCredentials(credentialsDTO);
     };
 }

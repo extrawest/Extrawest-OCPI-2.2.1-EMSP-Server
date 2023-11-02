@@ -2,7 +2,7 @@ package com.extrawest.ocpi.validation;
 
 import java.util.ArrayList;
 
-public class ValidatorBuilder {
+public class  ValidatorBuilder {
     private boolean required = false;
     private ArrayList<IValidationRule> rules;
 

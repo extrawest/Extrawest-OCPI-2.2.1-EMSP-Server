@@ -1,21 +1,23 @@
 package com.extrawest.ocpi.controller;
 
+import com.extrawest.ocpi.model.ResponseFormat;
+import com.extrawest.ocpi.model.dto.TariffDTO;
 import com.extrawest.ocpi.model.dto.response.VersionDetailsResponseDTO;
 import com.extrawest.ocpi.model.dto.response.VersionResponseDTO;
 import com.extrawest.ocpi.model.enums.VersionNumber;
+import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.EMSPVersionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/emsp/api/2.2.1/versions")
+@RequestMapping("/emsp/api/versions")
 @Tag(name="EmspVersion")
 public class EMSPVersionController {
 
@@ -29,9 +31,14 @@ public class EMSPVersionController {
      * Fetch information about the supported versions.
      * @return list of VersionResponseDTO
      */
-    public ResponseEntity<List<VersionResponseDTO>> getVersion() {
-        return ResponseEntity.ok(emspVersionService.getVersion());
-    };
+    @GetMapping
+    public ResponseEntity<ResponseFormat<List<VersionResponseDTO>>> getVersions() {
+        List<VersionResponseDTO> versions = emspVersionService.getVersions();
+
+        ResponseFormat<List<VersionResponseDTO>> responseFormat = new ResponseFormat<List<VersionResponseDTO>>()
+                .build(OcpiStatusCode.SUCCESS, versions);
+        return ResponseEntity.ok(responseFormat);
+    }
 
     /**
      * Via the version details, the parties can exchange which modules are implemented for a specific version of OCPI,
@@ -39,10 +46,14 @@ public class EMSPVersionController {
      * @param version - version of OCPI
      * @return VersionDetails
      */
-    @GetMapping("/details/{version}")
-    public ResponseEntity<VersionDetailsResponseDTO> getVersionDetails(
-            @PathVariable(value = "version") VersionNumber version
+    @GetMapping("/details")
+    public ResponseEntity<ResponseFormat<VersionDetailsResponseDTO>> getVersionDetails(
+            @RequestParam(value = "version") String version
     ) {
-        return ResponseEntity.ok(emspVersionService.getVersionDetails(version));
-    };
+        VersionDetailsResponseDTO versionDetails = emspVersionService.getVersionDetails(VersionNumber.fromValue(version));
+
+        ResponseFormat<VersionDetailsResponseDTO> responseFormat = new ResponseFormat<VersionDetailsResponseDTO>()
+                .build(OcpiStatusCode.SUCCESS, versionDetails);
+        return ResponseEntity.ok(responseFormat);
+    }
 }

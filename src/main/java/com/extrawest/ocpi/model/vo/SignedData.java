@@ -1,10 +1,11 @@
 package com.extrawest.ocpi.model.vo;
 
-import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
-import com.extrawest.ocpi.validation.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.OcpiResponseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,28 +21,14 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class SignedData implements Validatable {
-
-    @JsonIgnore
-    private final Validator encodingMethodValidator =
-            new ValidatorBuilder()
-                    .setRequired(true)
-                    .addRule(ValidationRules.string36())
-                    .build();
-
-    @JsonIgnore
-    private final Validator signedValuesValidator = new ListOfAtLeastOneObjects();
-
-    @JsonIgnore
-    private final Validator urlValidator =
-            new ValidatorBuilder()
-                    .addRule(ValidationRules.string512())
-                    .build();
+public class SignedData implements OcpiRequestData, OcpiResponseData {
 
     /**
      * The name of the encoding used in the SignedData field. This is the name given to the encoding by a company
      * or group of companies. See note below.
      */
+    @NotBlank
+    @Size(max = 36)
     @JsonProperty("encoding_method")
     private String encodingMethod;
 
@@ -54,12 +41,14 @@ public class SignedData implements Validatable {
     /**
      * Public key used to sign the data, base64 encoded.
      */
+    @Size(max = 512)
     @JsonProperty("public_key")
     private String publicKey;
 
     /**
      * One or more signed values
      */
+    @NotEmpty
     @JsonProperty("signed_values")
     private List<SignedValue> signedValues;
 
@@ -67,35 +56,8 @@ public class SignedData implements Validatable {
      * URL that can be shown to an EV driver. This URL gives the EV driver the possibility to check
      * the signed data from a charging session.
      */
+    @Size(max = 512)
     @JsonProperty("url")
     private String url;
 
-    public void setEncodingMethod(String encodingMethod) {
-        encodingMethodValidator.validate(encodingMethod);
-        this.encodingMethod = encodingMethod;
-    }
-
-    public void setEncodingMethodVersion(Integer encodingMethodVersion) {
-        this.encodingMethodVersion = encodingMethodVersion;
-    }
-
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
-    }
-
-    public void setSignedValues(List<SignedValue> signedValues) {
-        signedValuesValidator.validate(signedValues);
-        this.signedValues = signedValues;
-    }
-
-    public void setUrl(String url) {
-        urlValidator.validate(url);
-        this.url = url;
-    }
-
-    @Override
-    public boolean validate() {
-        return encodingMethodValidator.safeValidate(encodingMethod)
-                && signedValuesValidator.safeValidate(signedValues);
-    }
 }
