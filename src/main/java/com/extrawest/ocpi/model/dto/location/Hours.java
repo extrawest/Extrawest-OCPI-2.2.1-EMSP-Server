@@ -1,5 +1,7 @@
 package com.extrawest.ocpi.model.dto.location;
 
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
@@ -16,7 +18,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Hours {
+public class Hours implements OcpiRequestData, OcpiResponseData {
     /**
      * True to represent 24 hours a day and 7 days a week, except the given exceptions.
      */

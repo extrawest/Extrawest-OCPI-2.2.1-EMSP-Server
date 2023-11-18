@@ -1,6 +1,7 @@
 package com.extrawest.ocpi.model.dto.location;
 
 import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,7 +18,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class AdditionalGeoLocation {
+public class AdditionalGeoLocation implements OcpiRequestData {
     /**
      * Latitude of the point in decimal degree. Example: 50.770774. Decimal separator: "."
      * Regex: -?[0-9]{1,2}\.[0-9]{5,7}

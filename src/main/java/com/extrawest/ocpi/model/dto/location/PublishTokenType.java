@@ -1,6 +1,8 @@
 package com.extrawest.ocpi.model.dto.location;
 
 import com.extrawest.ocpi.model.enums.TokenType;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -16,7 +18,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PublishTokenType {
+public class PublishTokenType implements OcpiRequestData {
 
     /**
      * Unique ID by which this Token can be identified.

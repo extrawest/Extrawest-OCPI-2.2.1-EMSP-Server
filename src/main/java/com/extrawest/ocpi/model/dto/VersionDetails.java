@@ -1,6 +1,7 @@
 package com.extrawest.ocpi.model.dto;
 
 import com.extrawest.ocpi.model.enums.VersionNumber;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VersionDetails implements OcpiResponseData {
+public class VersionDetails implements OcpiRequestData, OcpiResponseData {
     /**
      * The version number.
      */

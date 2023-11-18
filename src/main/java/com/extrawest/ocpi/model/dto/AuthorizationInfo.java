@@ -3,6 +3,7 @@ package com.extrawest.ocpi.model.dto;
 import com.extrawest.ocpi.model.dto.cdr.CDR;
 import com.extrawest.ocpi.model.dto.token.Token;
 import com.extrawest.ocpi.model.enums.AllowedType;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthorizationInfo implements OcpiResponseData {
+public class AuthorizationInfo implements OcpiRequestData, OcpiResponseData {
 
     /**
      * Status of the Token, and whether charging is allowed at the optionally given location.

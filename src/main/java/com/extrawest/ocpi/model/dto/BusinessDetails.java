@@ -1,6 +1,8 @@
 package com.extrawest.ocpi.model.dto;
 
 import com.extrawest.ocpi.model.dto.location.Image;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -9,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BusinessDetails {
+public class BusinessDetails implements OcpiRequestData, OcpiResponseData {
 
     /**
      * Name of the operator.

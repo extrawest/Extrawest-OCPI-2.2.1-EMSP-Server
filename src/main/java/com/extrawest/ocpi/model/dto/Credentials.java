@@ -1,5 +1,7 @@
 package com.extrawest.ocpi.model.dto;
 
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -12,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Credentials {
+public class Credentials implements OcpiRequestData, OcpiResponseData {
     /**
      * The credentials token for the other party to authenticate in your system.
      */

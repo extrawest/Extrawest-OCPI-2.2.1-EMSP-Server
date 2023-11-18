@@ -1,6 +1,7 @@
 package com.extrawest.ocpi.model.dto;
 
 import com.extrawest.ocpi.model.enums.Role;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CredentialsRole implements OcpiResponseData {
+public class CredentialsRole implements OcpiRequestData, OcpiResponseData {
     /**
      * Type of role.
      */
