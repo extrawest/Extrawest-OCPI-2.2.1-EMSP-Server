@@ -3,9 +3,8 @@ package com.extrawest.ocpi.validation;
 import com.extrawest.ocpi.exception.OcpiGeneralClientException;
 import com.extrawest.ocpi.exception.OcpiInvalidParametersException;
 import com.extrawest.ocpi.model.dto.ClientOwnedObject;
-import com.extrawest.ocpi.model.vo.Connector;
-import com.extrawest.ocpi.model.vo.Evse;
-import com.extrawest.ocpi.model.vo.LocationData;
+import com.extrawest.ocpi.model.dto.location.Connector;
+import com.extrawest.ocpi.model.dto.location.EVSE;
 import lombok.experimental.UtilityClass;
 
 import java.util.Objects;
@@ -32,7 +31,7 @@ public class ClientObjectValidation {
         }
     }
 
-    public static void checkClientCanModifyObject(Evse object,
+    public static void checkClientCanModifyObject(EVSE object,
                                                   String id) {
         if (!Objects.equals(object.getUid(), id)) {
             throw new OcpiInvalidParametersException();

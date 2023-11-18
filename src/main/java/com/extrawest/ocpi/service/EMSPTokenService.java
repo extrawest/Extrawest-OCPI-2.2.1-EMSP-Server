@@ -1,15 +1,15 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.TokenDTO;
-import com.extrawest.ocpi.model.dto.request.LocationReferences;
-import com.extrawest.ocpi.model.dto.response.AuthorizationInfo;
+import com.extrawest.ocpi.model.dto.AuthorizationInfo;
+import com.extrawest.ocpi.model.dto.LocationReferences;
+import com.extrawest.ocpi.model.dto.token.Token;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EMSPTokenService {
 
-    List<TokenDTO> getToken(LocalDateTime dateFrom, LocalDateTime dateTo, Integer offset, Integer limit);
+    List<Token> getToken(LocalDateTime dateFrom, LocalDateTime dateTo, Integer offset, Integer limit);
 
     long getTotalCount(LocalDateTime dateFrom, LocalDateTime dateTo);
 

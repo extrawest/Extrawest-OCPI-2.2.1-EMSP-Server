@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * Response to the ChargingProfile request from the eMSP to the CPO.
+ *
+ * @see <a href="https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/mod_charging_profiles.asciidoc#165-chargingprofileresponsetype-enum>ChargingProfileResponseType enum</a>
  */
 public enum ChargingProfileResponseType {
     /**

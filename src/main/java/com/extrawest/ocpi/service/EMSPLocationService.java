@@ -1,42 +1,42 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.LocationDTO;
-import com.extrawest.ocpi.model.vo.Connector;
-import com.extrawest.ocpi.model.vo.Evse;
-import com.extrawest.ocpi.model.vo.LocationData;
+import com.extrawest.ocpi.model.dto.location.Connector;
+import com.extrawest.ocpi.model.dto.location.EVSE;
+import com.extrawest.ocpi.model.dto.location.Location;
+import com.extrawest.ocpi.model.markers.LocationData;
 
 public interface EMSPLocationService {
-    LocationDTO getLocation(String countryCode, String partyId, String locationId);
+    Location getLocation(String countryCode, String partyId, String locationId);
 
-    Evse getEvse(String countryCode, String partyId, String locationId, String evseUid);
+    EVSE getEvse(String countryCode, String partyId, String locationId, String evseUid);
 
     Connector getConnector(String countryCode, String partyId, String locationId, String evseUid,
                            String connectorId);
 
-    LocationDTO pushLocation(LocationDTO locationDTO,
-                      String countryCode,
-                      String partyId,
-                      String locationId);
+    Location pushLocation(Location locationDTO,
+                          String countryCode,
+                          String partyId,
+                          String locationId);
 
 
-    Evse pushEvse(Evse locationDTO,
+    EVSE pushEvse(EVSE locationDTO,
                   String countryCode,
                   String partyId,
                   String locationId,
                   String evseUid);
 
     Connector pushConnector(Connector connector,
+                            String countryCode,
+                            String partyId,
+                            String locationId,
+                            String evseUid,
+                            String connectorId);
+
+    LocationData patchLocation(Location locationDTO,
                                String countryCode,
                                String partyId,
                                String locationId,
                                String evseUid,
                                String connectorId);
-
-    LocationData patchLocation(LocationDTO locationDTO,
-                       String countryCode,
-                       String partyId,
-                       String locationId,
-                       String evseUid,
-                       String connectorId);
 
 }

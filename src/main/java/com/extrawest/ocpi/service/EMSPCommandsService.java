@@ -1,6 +1,6 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.request.CommandResult;
+import com.extrawest.ocpi.model.dto.command.CommandResult;
 import com.extrawest.ocpi.model.enums.CommandType;
 
 public interface EMSPCommandsService {

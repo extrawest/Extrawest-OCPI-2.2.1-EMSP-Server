@@ -20,7 +20,7 @@ public enum OcpiStatusCode {
     INVALID_PARAMETERS(2001, "Invalid or missing parameters"),
     NOT_ENOUGH_INFORMATION(2002, "Not enough information"),
     UNKNOWN_LOCATION(2003, "Unknown Location"),
-    UNKNOWN_TOKEN(2003, "Unknown Token"),
+    UNKNOWN_TOKEN(2004, "Unknown Token"),
 
     /**
      * {@code 3000 Server errors}.

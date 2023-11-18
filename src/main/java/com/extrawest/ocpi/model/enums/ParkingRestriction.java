@@ -1,6 +1,6 @@
 package com.extrawest.ocpi.model.enums;
 
-import com.extrawest.ocpi.model.OcpiResponseData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.extrawest.ocpi.util.EnumUtil;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

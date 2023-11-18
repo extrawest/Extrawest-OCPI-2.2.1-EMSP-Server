@@ -1,10 +1,11 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.CdrDTO;
+import com.extrawest.ocpi.model.dto.cdr.CDR;
 
 public interface EMSPCdrService {
 
-    CdrDTO getCdr(String id);
-    String postCdr(CdrDTO cdrDTO);
+    CDR getCdr(String id);
+
+    String postCdr(CDR cdrDTO);
 
 }
