@@ -174,7 +174,7 @@
                 <configuration>
                     <jreleaser>
                         <project>
-                            <description>OCPI OCPI library for eMSP operations</description>
+                            <description>OCPI library for eMSP operations</description>
                             <website>https://github.com/extrawest/Extrawest-OCPI-2.2.1-EMSP-Server/tree/main</website>
                             <docsUrl>https://github.com/extrawest/Extrawest-OCPI-2.2.1-EMSP-Server/tree/main</docsUrl>
                             <license>APACHE-2.0</license>
