@@ -125,7 +125,7 @@ Current library provides APIs for OCPI 2.2.1. To see changes between OCPI 2.2.1 
 check [OCPI changelog](https://github.com/ocpi/ocpi/blob/2.2.1/changelog.asciidoc#changelog_changelog)
 for OCPI 2.1.1 to OCPI 2.2 -> OCPI 2.2.1
 
-### Changes between v2023.11.28 and v2023.7.12
+### Changes between v2023.11.21 and v2023.7.12
 
 Lots of typos fixed and textual improvements. The following changes to messages/objects etc.
 
