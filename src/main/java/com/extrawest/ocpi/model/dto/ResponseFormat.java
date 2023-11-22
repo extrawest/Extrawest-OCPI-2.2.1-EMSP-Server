@@ -15,10 +15,7 @@ import java.time.LocalDateTime;
  * The content that is sent with all the response messages is an 'application/json' type and contains a JSON object with
  * the following properties.
  * For errors on the HTTP layer, use HTTP error response codes, including the response format above,
- * that contains more details.
- *
- * @param <T> Array or Object or String
- * @see <a href="https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/transport_and_format.asciidoc#117-response-format>Response format</a>
+ * that contains more details
  */
 @Data
 @AllArgsConstructor

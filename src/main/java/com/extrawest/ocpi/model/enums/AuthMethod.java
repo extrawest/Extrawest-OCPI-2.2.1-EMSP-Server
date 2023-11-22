@@ -10,8 +10,6 @@ import static com.extrawest.ocpi.util.EnumUtil.findByField;
  * a charging sessions, for example when the session was started with a reservation: ReserveNow: COMMAND.
  * When the driver arrives and starts charging using a Token that is whitelisted: WHITELIST.
  * The last method SHALL be used in the CDR.
- *
- * @see <a href="https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/mod_cdrs.asciidoc#141-authmethod-enum"></a>
  */
 public enum AuthMethod {
     /**
