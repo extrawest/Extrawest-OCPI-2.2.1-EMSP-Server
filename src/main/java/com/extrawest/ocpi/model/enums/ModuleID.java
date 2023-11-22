@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Most modules (except Credentials & Registration) are optional, but there might be dependencies between modules.
+ * Most modules (except Credentials, Registration) are optional, but there might be dependencies between modules.
  *
  * @see <a href="https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/version_information_endpoint.asciidoc#124-moduleid-enum">ModuleID enum</a>
  */

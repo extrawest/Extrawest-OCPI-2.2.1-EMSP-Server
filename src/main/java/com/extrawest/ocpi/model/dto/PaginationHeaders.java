@@ -3,8 +3,7 @@ package com.extrawest.ocpi.model.dto;
 
 public class PaginationHeaders {
     /* Link to the 'next' page should be provided when this is NOT the last page. The Link
-    should also contain any filters present in the original request. See the examples
-    below. e.g:  Link: <https://www.server.com/ocpi/cpo/2.2/cdrs/?offset=150&limit=50>; rel="next"
+    should also contain any filters present in the original request.
      */
     public final static String LINK = "Link";
 

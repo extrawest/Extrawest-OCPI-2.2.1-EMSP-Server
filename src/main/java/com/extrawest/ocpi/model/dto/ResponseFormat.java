@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
  * the following properties.
  * For errors on the HTTP layer, use HTTP error response codes, including the response format above,
  * that contains more details.
- *
  * @see <a href="https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/transport_and_format.asciidoc#117-response-format>Response format</a>
  */
 @Data
