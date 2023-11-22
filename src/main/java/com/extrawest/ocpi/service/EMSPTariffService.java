@@ -1,11 +1,11 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.TariffDTO;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
 
 public interface EMSPTariffService {
+    TariffDto getTariff(String countryCode, String partyId, String tariffId);
 
-    TariffDTO getTariff(String countryCode, String partyId, String tariffId);
-    void saveTariff(TariffDTO tariffDTO, String countryCode, String partyId, String tariff_id);
-    void deleteTariff(String countryCode, String partyId, String tariff_id);
+    TariffDto saveTariff(TariffDto tariffDTO, String countryCode, String partyId, String tariffId);
 
+    void deleteTariff(String countryCode, String partyId, String tariffId);
 }

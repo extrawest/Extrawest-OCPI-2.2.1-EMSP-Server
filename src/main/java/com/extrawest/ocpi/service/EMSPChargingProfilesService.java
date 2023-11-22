@@ -1,12 +1,13 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.AbstractProfileResult;
-import com.extrawest.ocpi.model.ResponseFormat;
-import com.extrawest.ocpi.model.dto.request.ActiveChargingProfileRequestDTO;
+import com.extrawest.ocpi.model.dto.charging_profile.ActiveChargingProfile;
+import com.extrawest.ocpi.model.dto.charging_profile.results.AbstractProfileResult;
+import com.extrawest.ocpi.model.dto.ResponseFormat;
 
 public interface EMSPChargingProfilesService {
 
     ResponseFormat postChargingProfile(AbstractProfileResult abstractProfileResult);
-    ResponseFormat putChargingProfile(String sessionId, ActiveChargingProfileRequestDTO activeChargingProfile);
+
+    ResponseFormat putChargingProfile(String sessionId, ActiveChargingProfile activeChargingProfile);
 
 }

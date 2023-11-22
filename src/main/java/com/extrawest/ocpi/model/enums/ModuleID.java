@@ -5,10 +5,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * The Module identifiers for each endpoint are described in the beginning of each Module chapter.
- * The following table contains the list of modules in this version of OCPI.
  * Most modules (except Credentials & Registration) are optional, but there might be dependencies between modules.
- * If there are dependencies between modules, it will be mentioned in the affected module description.
+ *
+ * @see <a href="https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/version_information_endpoint.asciidoc#124-moduleid-enum">ModuleID enum</a>
  */
 public enum ModuleID {
     CDRS("cdrs"),
