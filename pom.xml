@@ -5,7 +5,7 @@
 
     <groupId>com.extrawest</groupId>
     <artifactId>Extrawest-OCPI-2.2.1-EMSP-Server</artifactId>
-    <version>2023.11.21</version>
+    <version>2023.11.22-SNAPSHOT</version>
 
     <name>Extrawest-OCPI-2.2.1-EMSP-Server</name>
     <description>Extrawest-OCPI-2.2.1-EMSP-Server</description>
