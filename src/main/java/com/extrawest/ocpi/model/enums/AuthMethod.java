@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import static com.extrawest.ocpi.util.EnumUtil.findByField;
 
 /**
- * Method used for authentication. Multiple <mod_cdrs_authmethod_enum,AuthMethods>> are possible during
+ * Method used for authentication. Multiple AuthMethods are possible during
  * a charging sessions, for example when the session was started with a reservation: ReserveNow: COMMAND.
  * When the driver arrives and starts charging using a Token that is whitelisted: WHITELIST.
  * The last method SHALL be used in the CDR.
