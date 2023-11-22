@@ -1,6 +1,6 @@
 package com.extrawest.ocpi.controller;
 
-import com.extrawest.ocpi.model.dto.Credentials;
+import com.extrawest.ocpi.model.dto.CredentialsDto;
 import com.extrawest.ocpi.model.dto.ResponseFormat;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.EMSPCredentialsService;
@@ -29,10 +29,10 @@ public class EmspCredentialsController {
      * @return CredentialsDTO
      */
     @GetMapping
-    public ResponseEntity<ResponseFormat<Credentials>> getCredentials() {
-        Credentials credentials = emspCredentialsService.getCredentials();
+    public ResponseEntity<ResponseFormat<CredentialsDto>> getCredentials() {
+        CredentialsDto credentials = emspCredentialsService.getCredentials();
 
-        ResponseFormat<Credentials> responseFormat = new ResponseFormat<Credentials>()
+        ResponseFormat<CredentialsDto> responseFormat = new ResponseFormat<CredentialsDto>()
                 .build(OcpiStatusCode.SUCCESS, credentials);
         return ResponseEntity.ok(responseFormat);
     }
@@ -44,12 +44,12 @@ public class EmspCredentialsController {
      * @return current client's credentials to access the server’s system with newly generated token
      */
     @PostMapping
-    public ResponseEntity<ResponseFormat<Credentials>> postCredentials(
-            @RequestBody @Valid Credentials credentialsToClient) {
+    public ResponseEntity<ResponseFormat<CredentialsDto>> postCredentials(
+            @RequestBody @Valid CredentialsDto credentialsToClient) {
 
-        Credentials credentialsToServer = emspCredentialsService.postCredentials(credentialsToClient);
+        CredentialsDto credentialsToServer = emspCredentialsService.postCredentials(credentialsToClient);
 
-        ResponseFormat<Credentials> responseFormat = new ResponseFormat<Credentials>()
+        ResponseFormat<CredentialsDto> responseFormat = new ResponseFormat<CredentialsDto>()
                 .build(OcpiStatusCode.SUCCESS, credentialsToServer);
         return ResponseEntity.ok(responseFormat);
     }
@@ -60,7 +60,7 @@ public class EmspCredentialsController {
      * @param credentialsDTO - credentials
      */
     @PutMapping
-    public void putCredentials(@RequestBody @Valid Credentials credentialsDTO) {
+    public void putCredentials(@RequestBody @Valid CredentialsDto credentialsDTO) {
         emspCredentialsService.putCredentials(credentialsDTO);
     }
 
@@ -70,7 +70,7 @@ public class EmspCredentialsController {
      * @param credentialsDTO - credentials
      */
     @DeleteMapping
-    public void deleteCredentials(@RequestBody @Valid Credentials credentialsDTO) {
+    public void deleteCredentials(@RequestBody @Valid CredentialsDto credentialsDTO) {
         emspCredentialsService.deleteCredentials(credentialsDTO);
     }
 }

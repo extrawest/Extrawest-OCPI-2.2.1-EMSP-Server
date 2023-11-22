@@ -1,9 +1,9 @@
 package com.extrawest.ocpi.controller;
 
+import com.extrawest.ocpi.model.dto.ResponseFormat;
 import com.extrawest.ocpi.model.dto.location.Connector;
 import com.extrawest.ocpi.model.dto.location.EVSE;
 import com.extrawest.ocpi.model.dto.location.Location;
-import com.extrawest.ocpi.model.dto.ResponseFormat;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.model.markers.LocationData;
 import com.extrawest.ocpi.service.EMSPLocationService;
@@ -153,20 +153,64 @@ public class EmspLocationController {
      *                    This SHALL be the same value as the party_id in the Location object being pushed.
      * @param locationId  Location.id of the new Location object, or the Location of which an EVSE or
      *                    Connector object is pushed.
+     */
+    @PatchMapping("/{country_code}/{party_id}/{location_id}")
+    public ResponseEntity<ResponseFormat<LocationData>> patchLocation(
+            @RequestBody @Valid Location locationDTO,
+            @PathVariable(value = "country_code") String countryCode,
+            @PathVariable(value = "party_id") String partyId,
+            @PathVariable(value = "location_id") String locationId
+    ) {
+        ClientObjectValidation.checkClientCanModifyObject(locationDTO, countryCode, partyId, locationId);
+        LocationData locationData = emspLocationService.patchLocation(locationDTO, countryCode, partyId, locationId);
+
+        ResponseFormat<LocationData> responseFormat = new ResponseFormat<LocationData>()
+                .build(OcpiStatusCode.SUCCESS, locationData);
+        return ResponseEntity.ok(responseFormat);
+    }
+
+
+    @PatchMapping("/{country_code}/{party_id}/{location_id}/{evse_uid}")
+    public ResponseEntity<ResponseFormat<LocationData>> patchEvse(
+            @RequestBody @Valid EVSE evse,
+            @PathVariable(value = "country_code") String countryCode,
+            @PathVariable(value = "party_id") String partyId,
+            @PathVariable(value = "location_id") String locationId,
+            @PathVariable(value = "evse_uid") String evseUid
+    ) {
+        ClientObjectValidation.checkClientCanModifyObject(evse, evseUid);
+        LocationData locationData = emspLocationService.patchEvse(evse, countryCode, partyId, locationId, evseUid);
+
+        ResponseFormat<LocationData> responseFormat = new ResponseFormat<LocationData>()
+                .build(OcpiStatusCode.SUCCESS, locationData);
+        return ResponseEntity.ok(responseFormat);
+    }
+
+    /**
+     * The CPO pushes available Location, EVSE or Connector objects to the eMSP. PUT can be used to send
+     * new Location objects to the eMSP but also to replace existing Locations.
+     *
+     * @param connector   The request body contains the new/updated object.
+     * @param countryCode Country code of the CPO requesting this PUT to the eMSP system.
+     *                    This SHALL be the same value as the country_code in the Location object being pushed.
+     * @param partyId     Party ID (Provider ID) of the CPO requesting this PUT to the eMSP system.
+     *                    This SHALL be the same value as the party_id in the Location object being pushed.
+     * @param locationId  Location.id of the new Location object, or the Location of which an EVSE or
+     *                    Connector object is pushed.
      * @param evseUid     Evse.uid, required when an EVSE or Connector object is pushed.
      * @param connectorId Connector.id, required when a Connector object is pushed.
      */
-    @PatchMapping
-    public ResponseEntity<ResponseFormat<LocationData>> patchLocation(
-            @RequestBody @Valid Location locationDTO,
-            @RequestParam(value = "country_code") String countryCode,
-            @RequestParam(value = "party_id") String partyId,
-            @RequestParam(value = "location_id") String locationId,
-            @RequestParam(value = "evse_uid", required = false) String evseUid,
-            @RequestParam(value = "connector_id", required = false) String connectorId
+    @PatchMapping("/{country_code}/{party_id}/{location_id}/{evse_uid}/{connector_id}")
+    public ResponseEntity<ResponseFormat<LocationData>> patchConnector(
+            @RequestBody @Valid Connector connector,
+            @PathVariable(value = "country_code") String countryCode,
+            @PathVariable(value = "party_id") String partyId,
+            @PathVariable(value = "location_id") String locationId,
+            @PathVariable(value = "evse_uid") String evseUid,
+            @PathVariable(value = "connector_id") String connectorId
     ) {
-        ClientObjectValidation.checkClientCanModifyObject(locationDTO, countryCode, partyId, locationId);
-        LocationData locationData = emspLocationService.patchLocation(locationDTO, countryCode, partyId, locationId, evseUid, connectorId);
+        ClientObjectValidation.checkClientCanModifyObject(connector, connectorId);
+        LocationData locationData = emspLocationService.patchConnector(connector, countryCode, partyId, locationId, evseUid, connectorId);
 
         ResponseFormat<LocationData> responseFormat = new ResponseFormat<LocationData>()
                 .build(OcpiStatusCode.SUCCESS, locationData);

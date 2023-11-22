@@ -1,7 +1,7 @@
 package com.extrawest.ocpi.model.dto;
 
-import com.extrawest.ocpi.model.dto.cdr.CDR;
-import com.extrawest.ocpi.model.dto.token.Token;
+import com.extrawest.ocpi.model.dto.cdr.CDRDto;
+import com.extrawest.ocpi.model.dto.token.TokenDto;
 import com.extrawest.ocpi.model.enums.AllowedType;
 import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.extrawest.ocpi.model.markers.OcpiResponseData;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthorizationInfo implements OcpiRequestData, OcpiResponseData {
+public class AuthorizationInfoDto implements OcpiRequestData, OcpiResponseData {
 
     /**
      * Status of the Token, and whether charging is allowed at the optionally given location.
@@ -33,18 +33,18 @@ public class AuthorizationInfo implements OcpiRequestData, OcpiResponseData {
      */
     @NotNull
     @JsonProperty("token")
-    private Token token;
+    private TokenDto token;
 
     /**
      * Optional reference to the location if it was included in the request, and if the EV driver is allowed to charge
      * at that location. Only the EVSEs the EV driver is allowed to charge at are returned.
      */
     @JsonProperty("location")
-    private LocationReferences location;
+    private LocationReferencesDto location;
 
     /**
      * Reference to the authorization given by the eMSP, when given, this reference will be provided in the relevant
-     * {@link Session} and/or {@link CDR}.
+     * {@link SessionDto} and/or {@link CDRDto}.
      */
     @Size(min = 1, max = 36)
     @JsonProperty("authorization_reference")

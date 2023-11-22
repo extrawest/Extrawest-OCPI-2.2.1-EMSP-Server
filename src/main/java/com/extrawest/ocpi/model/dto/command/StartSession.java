@@ -1,6 +1,6 @@
 package com.extrawest.ocpi.model.dto.command;
 
-import com.extrawest.ocpi.model.dto.token.Token;
+import com.extrawest.ocpi.model.dto.token.TokenDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,7 +23,7 @@ public class StartSession extends AbstractCommand {
      */
     @NotNull
     @JsonProperty("token")
-    private Token token;
+    private TokenDto token;
 
     /**
      * Location.id of the Location (belonging to the CPO this request is send to) on which a session is to be started.

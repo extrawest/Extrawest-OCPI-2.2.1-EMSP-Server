@@ -35,20 +35,28 @@ OCPI consists of several modules. The role of a company in the EV landscape dete
 Description
 =============
 
-A CPO library of Open Charge-Point Interface. This library is designed to make life easier for those who want to implement a CPO application. 
+A CPO library of Open Charge-Point Interface. This library is designed to make life easier for those who want to
+implement a CPO application.
 
 With this library, you can easily get started with the Open Charge-Point Interface.
 
-Please note, this is a library and not an application, so there is no main method. 
+Please note, this is a library and not an application, so there is no main method.
 
 Currently we support 2.2.1 OCPI version.
 
 At 2.2.1 you can choose what kind of events will be supported by CPO or EMSP.
 
+#### Related projects:
+
+1. [BDD tests for eMSP](https://github.com/extrawest/bdd_ocpi_2.2.1_emsp)
+2. [OCPI 2.2.1 CPO Library](https://github.com/extrawest/Extrawest-OCPI-2.2.1-CPO-Server)
+3. [eMSP Client](https://github.com/extrawest/Extrawest-OCPI-2.2.1-EMSP-Client)
+4. [CPO Client](https://github.com/extrawest/Extrawest-OCPI-2.2.1-CPO-Client)
+
 Maven
 =====
 
-Find the maven repo here: https://mvnrepository.com/artifact/com.extrawest/Extrawest-OCPI-2.2.1-EMSP-Server
+Find the maven repo here: https://mvnrepository.com/artifact/com.extrawest/Extrawest-OCPI-2.2.1-EMSP-Server)
 
 Dependencies
 ============
@@ -92,51 +100,77 @@ Add this dependency to your project's POM:
 
 ## Getting Started
 Extrawest-OCPI-2.2.1-CPO-Server contains CPO Models, Validations, Controllers, Interfaces. To implement CPO Server developers need to write own implementations for CPO Services, e.g. :
+
 ```java
+
 @Service
-public class EMSPTariffServiceImpl implements EMSPTariffService {
-    @Override
-    public TariffDTO getTariff(String countryCode, String partyId, String tariffId) {
+public interface EMSPTariffServiceImpl implements EMSPTariffService {
+    TariffDto getTariff(String countryCode, String partyId, String tariffId) {
         //custom implementation here
     }
 
-    @Override
-    public void saveTariff(TariffDTO tariffDTO, String countryCode, String partyId, String tariff_id) {
+    TariffDto saveTariff(TariffDto tariffDTO, String countryCode, String partyId, String tariffId) {
         //custom implementation here
     }
 
-    @Override
-    public void deleteTariff(String countryCode, String partyId, String tariff_id) {
+    void deleteTariff(String countryCode, String partyId, String tariffId) {
         //custom implementation here
     }
 }
 ```
 
 ## Changelog
-Current library provides APIs for OCPI 2.2.1. To see changes between OCPI 2.2.1 and previous versions please check [OCPI changelog](https://github.com/ocpi/ocpi/blob/2.2.1/changelog.asciidoc#changelog_changelog)
+
+Current library provides APIs for OCPI 2.2.1. To see changes between OCPI 2.2.1 and previous versions please
+check [OCPI changelog](https://github.com/ocpi/ocpi/blob/2.2.1/changelog.asciidoc#changelog_changelog)
 for OCPI 2.1.1 to OCPI 2.2 -> OCPI 2.2.1
 
-#### Extrawest-OCPI-2.2.1-EMSP-Server library (v2023.7.12) covers next modules:
+### Changes between v2023.11.28 and v2023.7.12
+
+Lots of typos fixed and textual improvements. The following changes to messages/objects etc.
+
+| Context (Module / Object) | Description                                                                                                                                                                                                                                               |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Status Codes              | Added [OCPI Status Codes](https://github.com/ocpi/ocpi/blob/master/status_codes.asciidoc). Added exceptions handlers and exceptions to handle common errors (see [Errors](https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#errors)) |
+| All modules               | Added parameter's validation. Wrapped response into [Response format](https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#117-response-format)|
+| Locations                 | Blocking client access to objects that do not belong to them ( see [Errors](https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#errors)).|
+| Locations                 | Added Location's endpoints permissions per roles: CPO as Sender, eMSP - Receiver, HUB - Sender & Receiver, NSP - Receiver, NAP -  Sender & Receiver                                                                                                       |
+| Locations                 | Added ability to add/modify Evse and Connector                                                                                                                                                                                                            |                                                                                                                                                                                                                                                       |
+| Sessions                  | Blocking client access to objects that do not belong to them ( see [Errors](https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#errors))                                                                                               |
+| Sessions                  | Added Sessions permissions per roles: CPO as Sender, eMSP - Receiver, HUB - Sender & Receiver, SCSP - Receiver                                                                                                                                            |                                                                                                                                                                                      |                                                                                                                                                                                                                                                  |
+| CDRs                      | Added CDR's permissions per roles: CPO as Sender, eMSP - Receiver, HUB - Sender & Receiver                                                                                                                                                                |
+| Tariffs                   | Blocking client access to objects that do not belong to them ( see [Errors](https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#errors))                                                                                               |
+| Tariffs                   | Added Tariffs permissions per roles: CPO - Sender, eMSP - Receiver, Hub - Sender and Receiver, NSP - Receiver, SCSP - Sender and Receiver|                            
+| Tokens                    | Added [Paginated](https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/transport_and_format.asciidoc#paginated-response) response to getting the list of known Tokens  |
+| Tokens                    | Added Tokens module's permissions per roles: CPO as Receiver, eMSP - Sender, HUB - Sender & Receiver                                                                                                                                                      |                                                                                                                                                                                      |                                                                                                                                                                                                                                                  |
+| Commands                  | Added Commands module's permissions per roles: CPO as Receiver, eMSP - Sender, HUB - Sender & Receiver                                                                                                                                                    |
+| Charging Profiles         | Added Charging Profiles module's permissions per roles: CPO as Receiver, HUB - Sender & Receiver, SCSP - Sender                                                                                                                                           |
+| Credentials               | Added permissions for main [OCPI roles](https://github.com/ocpi/ocpi/blob/master/terminology.asciidoc#typical-ocpi-implementations-per-role)                                                                                                              |
+|  Versions                 | Changed URLs according [Version information endpoint](https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/version_information_endpoint.asciidoc#11-version-information-endpoint)              |
+
+### Changes in v2023.7.12
+
+Extrawest-OCPI-2.2.1-EMSP-Server library (v2023.7.12) covers next modules.
 
 Functional Modules:
 
- Module            | v2023.7.12 | Description                                                                                                                                                                                                                                                                                                                               
--------------------|----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- [Locations](https://github.com/ocpi/ocpi/blob/2.2.1/mod_locations.asciidoc) | +         | The Location objects live in the CPO back-end system. They describe the charging locations of an operator                                                                                                                                                                                                                                 |
- [Sessions](https://github.com/ocpi/ocpi/blob/2.2.1/mod_sessions.asciidoc) | +         | The Session object describes one charging session. The Session object is owned by the CPO back-end system, and can be GET from the CPO system, or pushed by the CPO to another system                                                                                                                                                     |
- [CDRs](https://github.com/ocpi/ocpi/blob/2.2.1/mod_cdrs.asciidoc) | +         | A Charge Detail Record is the description of a concluded charging session. The CDR is the only billing-relevant object. CDRs are sent from the CPO to the eMSP after the charging session has ended                                                                                                                                       |
- [Tariffs](https://github.com/ocpi/ocpi/blob/2.2.1/mod_tariffs.asciidoc) | +         | The Tariffs module gives eMSPs information about the tariffs used by the CPO                                                                                                                                                                                                                                                              |
- [Tokens](https://github.com/ocpi/ocpi/blob/2.2.1/mod_tokens.asciidoc) | +         | The tokens module gives CPOs knowledge of the token information of an eMSP. eMSPs can push Token information to CPOs, CPOs can build a cache of known Tokens. When a request to authorize comes from a Charge Point, the CPO can check against this cache. With this cached information they know to which eMSP they can later send a CDR |
- [Commands](https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc)  | +         | The Commands module enables remote commands to be sent to a Location/EVSE. The following commands are supported: CANCEL_RESERVATION, RESERVE_NOW, START_SESSION , STOP_SESSION, UNLOCK_CONNECTOR                                                                                                                                          |
- [Charging Profiles](https://github.com/ocpi/ocpi/blob/2.2.1/mod_charging_profiles.asciidoc)| +         | With the ChargingProfiles module, parties (SCSP but also MSPs) can send (Smart) Charging Profiles to a Location/EVSE. It is also possible to request the 'ActiveChargingProfile' from a Location/EVSE                                                                                                                                     |
- [Hub Client Info](https://github.com/ocpi/ocpi/blob/2.2.1/mod_hub_client_info.asciidoc)   | +         | Provides parties connected to a hub with the connection status of other parties that are connected to a hub that they can communicate with. So, CPOs know which eMSP and other parties are online and vice versa                                                                                                                          |
+| Module                                                                                     | v2023.7.12 | Description                                                                                                                                                                                                                                                                                                                               |
+|--------------------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Locations](https://github.com/ocpi/ocpi/blob/2.2.1/mod_locations.asciidoc)                | +          | The Location objects live in the CPO back-end system. They describe the charging locations of an operator                                                                                                                                                                                                                                 |
+| [Sessions](https://github.com/ocpi/ocpi/blob/2.2.1/mod_sessions.asciidoc)                  | +          | The Session object describes one charging session. The Session object is owned by the CPO back-end system, and can be GET from the CPO system, or pushed by the CPO to another system                                                                                                                                                     |
+| [CDRs](https://github.com/ocpi/ocpi/blob/2.2.1/mod_cdrs.asciidoc)                          | +          | A Charge Detail Record is the description of a concluded charging session. The CDR is the only billing-relevant object. CDRs are sent from the CPO to the eMSP after the charging session has ended                                                                                                                                       |
+| [Tariffs](https://github.com/ocpi/ocpi/blob/2.2.1/mod_tariffs.asciidoc)                    | +          | The Tariffs module gives eMSPs information about the tariffs used by the CPO                                                                                                                                                                                                                                                              |
+| [Tokens](https://github.com/ocpi/ocpi/blob/2.2.1/mod_tokens.asciidoc)                      | +          | The tokens module gives CPOs knowledge of the token information of an eMSP. eMSPs can push Token information to CPOs, CPOs can build a cache of known Tokens. When a request to authorize comes from a Charge Point, the CPO can check against this cache. With this cached information they know to which eMSP they can later send a CDR |
+| [Commands](https://github.com/ocpi/ocpi/blob/2.2.1/mod_commands.asciidoc)                  | +          | The Commands module enables remote commands to be sent to a Location/EVSE. The following commands are supported: CANCEL_RESERVATION, RESERVE_NOW, START_SESSION , STOP_SESSION, UNLOCK_CONNECTOR                                                                                                                                          |
+| [Charging Profiles](https://github.com/ocpi/ocpi/blob/2.2.1/mod_charging_profiles.asciidoc) | +          | With the ChargingProfiles module, parties (SCSP but also MSPs) can send (Smart) Charging Profiles to a Location/EVSE. It is also possible to request the 'ActiveChargingProfile' from a Location/EVSE                                                                                                                                     |
+| [Hub Client Info](https://github.com/ocpi/ocpi/blob/2.2.1/mod_hub_client_info.asciidoc)    | +          | Provides parties connected to a hub with the connection status of other parties that are connected to a hub that they can communicate with. So, CPOs know which eMSP and other parties are online and vice versa                                                                                                                          |
 
 Configuration Modules:
 
-Module | v2023.7.12 | Description                                                                                                                          
------------- |-----------|--------------------------------------------------------------------------------------------------------------------------------------
-[Credentials](https://github.com/ocpi/ocpi/blob/2.2.1/credentials.asciidoc)| +         | The credentials module is used to exchange the credentials token that has to be used by parties for authorization of requests        |
-[Versions](https://github.com/ocpi/ocpi/blob/2.2.1/version_information_endpoint.asciidoc) | +         |  Via this module, clients can learn which versions of OCPI a server supports, and which modules it supports for each of the versions  |
+| Module                                                                                     | v2023.7.12 | Description                                                                                                                          |
+|--------------------------------------------------------------------------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------|
+| [Credentials](https://github.com/ocpi/ocpi/blob/2.2.1/credentials.asciidoc)                | +         | The credentials module is used to exchange the credentials token that has to be used by parties for authorization of requests        |
+|  [Versions](https://github.com/ocpi/ocpi/blob/2.2.1/version_information_endpoint.asciidoc) | +         |  Via this module, clients can learn which versions of OCPI a server supports, and which modules it supports for each of the versions  |
 
 Plans for next releases is to enrich Credentials with OCPI Registration process
 

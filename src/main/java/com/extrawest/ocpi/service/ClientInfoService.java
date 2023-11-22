@@ -1,10 +1,10 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.ClientInfo;
+import com.extrawest.ocpi.model.dto.ClientInfoDto;
 
 public interface ClientInfoService {
 
-    ClientInfo getHubClientInfo(String countryCode, String partyId);
+    ClientInfoDto getHubClientInfo(String countryCode, String partyId);
 
     void putHubClientInfo(String countryCode, String partyId);
 

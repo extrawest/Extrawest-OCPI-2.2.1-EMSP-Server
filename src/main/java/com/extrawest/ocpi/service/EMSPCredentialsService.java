@@ -1,15 +1,15 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.Credentials;
+import com.extrawest.ocpi.model.dto.CredentialsDto;
 
 public interface EMSPCredentialsService {
 
-    Credentials getCredentials();
+    CredentialsDto getCredentials();
 
-    Credentials postCredentials(Credentials credentialsToClientDto);
+    CredentialsDto postCredentials(CredentialsDto credentialsToClientDto);
 
-    void putCredentials(Credentials credentialsDTO);
+    void putCredentials(CredentialsDto credentialsDTO);
 
-    void deleteCredentials(Credentials credentialsDTO);
+    void deleteCredentials(CredentialsDto credentialsDTO);
 
 }

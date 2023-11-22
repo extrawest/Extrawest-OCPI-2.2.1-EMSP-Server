@@ -1,6 +1,8 @@
 package com.extrawest.ocpi.controller;
 
-import com.extrawest.ocpi.model.dto.ClientInfo;
+import com.extrawest.ocpi.model.dto.ClientInfoDto;
+import com.extrawest.ocpi.model.dto.ResponseFormat;
+import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.HubClientInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +36,16 @@ public abstract class HubClientInfoController {
      * @return List of all (or matching) ClientInfo objects.
      */
     @GetMapping("/{date_from}/{date_to}/{offset}/{limit}")
-    public ResponseEntity<List<ClientInfo>> getClientInfoList(
+    public ResponseEntity<ResponseFormat<List<ClientInfoDto>>> getClientInfoList(
             @PathVariable(value = "date_from", required = false) LocalDateTime dateFrom,
             @PathVariable(value = "date_to", required = false) LocalDateTime dateTo,
             @PathVariable(value = "offset", required = false) Integer offset,
             @PathVariable(value = "limit", required = false) Integer limit) {
-        return ResponseEntity.ok(hubClientInfoService.getClientInfoList(dateFrom, dateTo, offset, limit));
+        List<ClientInfoDto> clientInfoList = hubClientInfoService.getClientInfoList(dateFrom, dateTo, offset, limit);
+
+        ResponseFormat<List<ClientInfoDto>> responseFormat = new ResponseFormat<List<ClientInfoDto>>()
+                .build(OcpiStatusCode.SUCCESS, clientInfoList);
+        return ResponseEntity.ok(responseFormat);
     }
 
 }

@@ -1,9 +1,9 @@
 package com.extrawest.ocpi.model.dto.command;
 
-import com.extrawest.ocpi.model.dto.cdr.CDR;
+import com.extrawest.ocpi.model.dto.SessionDto;
+import com.extrawest.ocpi.model.dto.cdr.CDRDto;
 import com.extrawest.ocpi.model.dto.location.EVSE;
-import com.extrawest.ocpi.model.dto.Session;
-import com.extrawest.ocpi.model.dto.token.Token;
+import com.extrawest.ocpi.model.dto.token.TokenDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 /**
  * ReserveNow object, for the RESERVE_NOW command, with information needed to reserve
- * a (specific) connector of a Charge Point for a given {@link Token}.
+ * a (specific) connector of a Charge Point for a given {@link TokenDto}.
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,7 +28,7 @@ public class ReserveNow extends AbstractCommand {
      */
     @NotNull
     @JsonProperty("token")
-    private Token token;
+    private TokenDto token;
 
     /**
      * The Date/Time when this reservation ends, in UTC
@@ -63,7 +63,7 @@ public class ReserveNow extends AbstractCommand {
 
     /**
      * Reference to the authorization given by the eMSP, when given, this reference will be provided
-     * in the relevant {@link Session} and/or {@link CDR}.
+     * in the relevant {@link SessionDto} and/or {@link CDRDto}.
      */
     @Size(min = 1, max = 36)
     @JsonProperty("authorization_reference")

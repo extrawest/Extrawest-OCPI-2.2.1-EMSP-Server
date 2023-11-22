@@ -1,7 +1,10 @@
 package com.extrawest.ocpi.controller;
 
-import com.extrawest.ocpi.model.dto.*;
-import com.extrawest.ocpi.model.dto.token.Token;
+import com.extrawest.ocpi.model.dto.AuthorizationInfoDto;
+import com.extrawest.ocpi.model.dto.LocationReferencesDto;
+import com.extrawest.ocpi.model.dto.PaginationHeaders;
+import com.extrawest.ocpi.model.dto.ResponseFormat;
+import com.extrawest.ocpi.model.dto.token.TokenDto;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.EMSPTokenService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -47,7 +50,7 @@ public class EmspTokenController {
      * @return List of all tokens.
      */
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<Token>>> getTokens(
+    public ResponseEntity<ResponseFormat<List<TokenDto>>> getTokens(
             @RequestParam(value = "date_from", required = false) LocalDateTime dateFrom,
             @RequestParam(value = "date_to", required = false) LocalDateTime dateTo,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,
@@ -55,10 +58,10 @@ public class EmspTokenController {
             HttpServletRequest request) {
 
         limit = limit == null || limit > Integer.parseInt(maxXLimit) ? Integer.parseInt(maxXLimit) : limit;
-        List<Token> tokens = emspTokenService.getToken(dateFrom, dateTo, offset, limit);
+        List<TokenDto> tokens = emspTokenService.getToken(dateFrom, dateTo, offset, limit);
         long totalCount = emspTokenService.getTotalCount(dateFrom, dateTo);
 
-        ResponseFormat<List<Token>> responseFormat = new ResponseFormat<List<Token>>()
+        ResponseFormat<List<TokenDto>> responseFormat = new ResponseFormat<List<TokenDto>>()
                 .build(OcpiStatusCode.SUCCESS, tokens);
 
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -98,13 +101,13 @@ public class EmspTokenController {
      * which EVSEs are allowed to be used.
      */
     @PostMapping("/{token_uid}/authorize")
-    public ResponseEntity<ResponseFormat<AuthorizationInfo>> postToken(
+    public ResponseEntity<ResponseFormat<AuthorizationInfoDto>> postToken(
             @PathVariable(value = "token_uid") @Size(min = 1, max = 36) String tokenUid,
             @RequestParam(value = "type", required = false) String tokenType,
-            @RequestBody @Valid LocationReferences locationReferences) {
-        AuthorizationInfo dto = emspTokenService.postToken(tokenUid, tokenType, locationReferences);
+            @RequestBody @Valid LocationReferencesDto locationReferences) {
+        AuthorizationInfoDto dto = emspTokenService.postToken(tokenUid, tokenType, locationReferences);
 
-        ResponseFormat<AuthorizationInfo> responseFormat = new ResponseFormat<AuthorizationInfo>()
+        ResponseFormat<AuthorizationInfoDto> responseFormat = new ResponseFormat<AuthorizationInfoDto>()
                 .build(OcpiStatusCode.SUCCESS, dto);
         return ResponseEntity.ok(responseFormat);
     }

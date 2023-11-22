@@ -1,7 +1,9 @@
 package com.extrawest.ocpi.model.dto.cdr;
 
-import com.extrawest.ocpi.model.dto.*;
-import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.dto.ChargingPeriod;
+import com.extrawest.ocpi.model.dto.ClientOwnedObject;
+import com.extrawest.ocpi.model.dto.Price;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
 import com.extrawest.ocpi.model.enums.AuthMethod;
 import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.extrawest.ocpi.model.markers.OcpiResponseData;
@@ -22,7 +24,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public class CDR extends ClientOwnedObject implements OcpiRequestData, OcpiResponseData {
+public class CDRDto extends ClientOwnedObject implements OcpiRequestData, OcpiResponseData {
     /**
      * Start timestamp of the charging session, or in-case of a reservation (before the start of a session) the start
      * of the reservation.
@@ -99,7 +101,7 @@ public class CDR extends ClientOwnedObject implements OcpiRequestData, OcpiRespo
      * List of relevant Tariff Elements, see: Tariff. When relevant, a Free of Charge tariff should also be in this
      * list, and point to a defined Free of Charge Tariff.
      */
-    private List<Tariff> tariffs;
+    private List<TariffDto> tariffs;
 
     /**
      * List of Charging Periods that make up this charging session. A session consists of 1 or more periods,

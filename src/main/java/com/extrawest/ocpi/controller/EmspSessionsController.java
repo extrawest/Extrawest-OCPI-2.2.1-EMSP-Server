@@ -1,7 +1,7 @@
 package com.extrawest.ocpi.controller;
 
 import com.extrawest.ocpi.model.dto.ResponseFormat;
-import com.extrawest.ocpi.model.dto.Session;
+import com.extrawest.ocpi.model.dto.SessionDto;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.EMSPSessionsService;
 import com.extrawest.ocpi.validation.ClientObjectValidation;
@@ -34,14 +34,14 @@ public class EmspSessionsController {
      * @return Requested Session object.
      */
     @GetMapping
-    public ResponseEntity<ResponseFormat<Session>> getSession(
+    public ResponseEntity<ResponseFormat<SessionDto>> getSession(
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
             @RequestParam(value = "session_id") @Size(min = 1, max = 36) String sessionId
     ) {
-        Session sessionDto = emspSessionsService.getSession(countryCode, partyId, sessionId);
+        SessionDto sessionDto = emspSessionsService.getSession(countryCode, partyId, sessionId);
 
-        ResponseFormat<Session> responseFormat = new ResponseFormat<Session>()
+        ResponseFormat<SessionDto> responseFormat = new ResponseFormat<SessionDto>()
                 .build(OcpiStatusCode.SUCCESS, sessionDto);
         return ResponseEntity.ok(responseFormat);
     }
@@ -57,15 +57,15 @@ public class EmspSessionsController {
      * @param sessionId   id of the new or updated Session object.
      */
     @PutMapping
-    public ResponseEntity<ResponseFormat<Session>> putSession(
-            @RequestBody @Valid Session sessionDTO,
+    public ResponseEntity<ResponseFormat<SessionDto>> putSession(
+            @RequestBody @Valid SessionDto sessionDTO,
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
             @RequestParam(value = "session_id") @Size(min = 1, max = 36) String sessionId
     ) {
         ClientObjectValidation.checkClientCanModifyObject(sessionDTO, countryCode, partyId, sessionId);
-        Session saved = emspSessionsService.putSession(sessionDTO, countryCode, partyId, sessionId);
-        ResponseFormat<Session> responseFormat = new ResponseFormat<Session>()
+        SessionDto saved = emspSessionsService.putSession(sessionDTO, countryCode, partyId, sessionId);
+        ResponseFormat<SessionDto> responseFormat = new ResponseFormat<SessionDto>()
                 .build(OcpiStatusCode.SUCCESS, saved);
 
         return ResponseEntity.ok(responseFormat);
@@ -82,7 +82,7 @@ public class EmspSessionsController {
      */
     @PatchMapping
     public void patchSession(
-            @RequestBody @Valid Session sessionDTO,
+            @RequestBody @Valid SessionDto sessionDTO,
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
             @RequestParam(value = "session_id") @Size(min = 1, max = 36) String sessionId

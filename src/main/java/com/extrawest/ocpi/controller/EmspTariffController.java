@@ -3,7 +3,7 @@ package com.extrawest.ocpi.controller;
 import com.extrawest.ocpi.exception.OcpiGeneralClientException;
 import com.extrawest.ocpi.exception.OcpiInvalidParametersException;
 import com.extrawest.ocpi.model.dto.ResponseFormat;
-import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.EMSPTariffService;
 import com.extrawest.ocpi.validation.ClientObjectValidation;
@@ -32,17 +32,17 @@ public class EmspTariffController {
      *
      * @param countryCode Country code of the CPO performing the GET request on the eMSP’s system.
      * @param partyId     Party ID (Provider ID) of the CPO performing the GET request on the eMSP’s system.
-     * @param tariffId    Party ID (Provider ID) of the CPO performing the GET request on the eMSP’s system.
+     * @param tariffId    Tariff.id of the Tariff object
      * @return The requested Tariff object.
      */
     @GetMapping(produces = "application/json")
-    public ResponseEntity<ResponseFormat<Tariff>> getTariff(
+    public ResponseEntity<ResponseFormat<TariffDto>> getTariff(
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
             @RequestParam(value = "tariff_id") @Size(min = 1, max = 36) String tariffId) {
-        Tariff tariffDto = emspTariffService.getTariff(countryCode, partyId, tariffId);
+        TariffDto tariffDto = emspTariffService.getTariff(countryCode, partyId, tariffId);
 
-        ResponseFormat<Tariff> responseFormat = new ResponseFormat<Tariff>()
+        ResponseFormat<TariffDto> responseFormat = new ResponseFormat<TariffDto>()
                 .build(OcpiStatusCode.SUCCESS, tariffDto);
         return ResponseEntity.ok(responseFormat);
     }
@@ -61,15 +61,15 @@ public class EmspTariffController {
      * @see <a href="https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#errors">Errors</a>
      */
     @PutMapping
-    public ResponseEntity<ResponseFormat<Tariff>> saveTariff(
-            @RequestBody @Valid Tariff tariffDTO,
+    public ResponseEntity<ResponseFormat<TariffDto>> saveTariff(
+            @RequestBody @Valid TariffDto tariffDTO,
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
             @RequestParam(value = "tariff_id") @Size(min = 1, max = 36) String tariffId) {
         ClientObjectValidation.checkClientCanModifyObject(tariffDTO, countryCode, partyId, tariffId);
-        Tariff saved = emspTariffService.saveTariff(tariffDTO, countryCode, partyId, tariffId);
+        TariffDto saved = emspTariffService.saveTariff(tariffDTO, countryCode, partyId, tariffId);
 
-        ResponseFormat<Tariff> responseFormat = new ResponseFormat<Tariff>()
+        ResponseFormat<TariffDto> responseFormat = new ResponseFormat<TariffDto>()
                 .build(OcpiStatusCode.SUCCESS, saved);
 
         return ResponseEntity.ok(responseFormat);
@@ -83,13 +83,13 @@ public class EmspTariffController {
      * @param tariffId    Tariff.id of the Tariff object to delete.
      */
     @DeleteMapping
-    public ResponseEntity<ResponseFormat<Tariff>> deleteTariff(
+    public ResponseEntity<ResponseFormat<TariffDto>> deleteTariff(
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
             @RequestParam(value = "tariff_id") @Size(min = 1, max = 36) String tariffId) {
         emspTariffService.deleteTariff(countryCode, partyId, tariffId);
 
-        ResponseFormat<Tariff> responseFormat = new ResponseFormat<Tariff>()
+        ResponseFormat<TariffDto> responseFormat = new ResponseFormat<TariffDto>()
                 .build(OcpiStatusCode.SUCCESS);
         return ResponseEntity.ok(responseFormat);
     }

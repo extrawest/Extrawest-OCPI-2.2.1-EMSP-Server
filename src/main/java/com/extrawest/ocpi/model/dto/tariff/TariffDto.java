@@ -1,6 +1,8 @@
 package com.extrawest.ocpi.model.dto.tariff;
 
-import com.extrawest.ocpi.model.dto.*;
+import com.extrawest.ocpi.model.dto.ClientOwnedObject;
+import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.dto.Price;
 import com.extrawest.ocpi.model.dto.location.EnergyMix;
 import com.extrawest.ocpi.model.enums.TariffType;
 import com.extrawest.ocpi.model.markers.OcpiRequestData;
@@ -19,7 +21,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public class Tariff extends ClientOwnedObject implements OcpiRequestData, OcpiResponseData {
+public class TariffDto extends ClientOwnedObject implements OcpiRequestData, OcpiResponseData {
     /**
      * ISO-4217 code of the currency of this tariff.
      */

@@ -1,7 +1,7 @@
 package com.extrawest.ocpi.controller;
 
-import com.extrawest.ocpi.model.dto.cdr.CDR;
 import com.extrawest.ocpi.model.dto.ResponseFormat;
+import com.extrawest.ocpi.model.dto.cdr.CDRDto;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.EMSPCdrService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,11 +32,11 @@ public class EmspCdrController {
      * @return The endpoint returns the requested CDR, if it exists.
      */
     @GetMapping
-    public ResponseEntity<ResponseFormat<CDR>> getCdr(
+    public ResponseEntity<ResponseFormat<CDRDto>> getCdr(
             @RequestParam(value = "id") @Size(min = 1, max = 36) String id) {
-        CDR cdr = emspCdrService.getCdr(id);
+        CDRDto cdr = emspCdrService.getCdr(id);
 
-        ResponseFormat<CDR> responseFormat = new ResponseFormat<CDR>()
+        ResponseFormat<CDRDto> responseFormat = new ResponseFormat<CDRDto>()
                 .build(OcpiStatusCode.SUCCESS, cdr);
         return ResponseEntity.ok(responseFormat);
     }
@@ -48,7 +48,7 @@ public class EmspCdrController {
      * @return the URL where the newly created CDR can be found
      */
     @PostMapping
-    public ResponseEntity<ResponseFormat<String>> postCdr(@RequestBody @Valid CDR cdrDTO) {
+    public ResponseEntity<ResponseFormat<String>> postCdr(@RequestBody @Valid CDRDto cdrDTO) {
         String path = emspCdrService.postCdr(cdrDTO);
 
         ResponseFormat<String> responseFormat = new ResponseFormat<String>()

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Token implements OcpiResponseData, OcpiRequestData {
+public class TokenDto implements OcpiResponseData, OcpiRequestData {
     /**
      * ISO-3166 alpha-2 country code of the MSP that 'owns' this Token.
      */

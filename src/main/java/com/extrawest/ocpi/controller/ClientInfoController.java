@@ -1,6 +1,6 @@
 package com.extrawest.ocpi.controller;
 
-import com.extrawest.ocpi.model.dto.ClientInfo;
+import com.extrawest.ocpi.model.dto.ClientInfoDto;
 import com.extrawest.ocpi.service.ClientInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -29,12 +29,12 @@ public class ClientInfoController {
      * @return The requested ClientInfo object.
      */
     @GetMapping("/{country_code}/{party_id}")
-    public ResponseEntity<ClientInfo> getHubClientInfo(
+    public ResponseEntity<ClientInfoDto> getHubClientInfo(
             @PathVariable(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @PathVariable(value = "party_id") @Size(min = 3, max = 3) String partyId
     ) {
         return ResponseEntity.ok(clientInfoService.getHubClientInfo(countryCode, partyId));
-    };
+    }
 
     /**
      * Push new/updated ClientInfo object to the connect client.
@@ -47,6 +47,6 @@ public class ClientInfoController {
             @PathVariable(value = "party_id") @Size(min = 3, max = 3) String partyId
     ) {
         clientInfoService.putHubClientInfo(countryCode, partyId);
-    };
+    }
 
 }

@@ -1,15 +1,15 @@
 package com.extrawest.ocpi.service;
 
-import com.extrawest.ocpi.model.dto.VersionDetails;
-import com.extrawest.ocpi.model.dto.Version;
+import com.extrawest.ocpi.model.dto.VersionDetailsDto;
+import com.extrawest.ocpi.model.dto.VersionDto;
 import com.extrawest.ocpi.model.enums.VersionNumber;
 
 import java.util.List;
 
 public interface EMSPVersionService {
 
-    List<Version> getVersions();
+    List<VersionDto> getVersions();
 
-    VersionDetails getVersionDetails(VersionNumber version);
+    VersionDetailsDto getVersionDetails(VersionNumber version);
 
 }

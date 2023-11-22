@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LocationReferences implements OcpiResponseData, OcpiRequestData {
+public class LocationReferencesDto implements OcpiResponseData, OcpiRequestData {
 
     /**
      * Unique identifier for the location

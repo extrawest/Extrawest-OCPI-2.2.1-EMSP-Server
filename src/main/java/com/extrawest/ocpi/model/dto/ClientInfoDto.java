@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientInfo {
+public class ClientInfoDto {
     /**
      * CPO or eMSP ID of this party (following the 15118 ISO standard), as used in the credentials exchange.
      */

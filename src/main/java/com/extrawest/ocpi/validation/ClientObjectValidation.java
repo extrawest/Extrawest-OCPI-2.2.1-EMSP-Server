@@ -31,16 +31,16 @@ public class ClientObjectValidation {
         }
     }
 
-    public static void checkClientCanModifyObject(EVSE object,
+    public static void checkClientCanModifyObject(EVSE evse,
                                                   String id) {
-        if (!Objects.equals(object.getUid(), id)) {
+        if (!Objects.equals(evse.getUid(), id)) {
             throw new OcpiInvalidParametersException();
         }
     }
 
-    public static void checkClientCanModifyObject(Connector object,
+    public static void checkClientCanModifyObject(Connector connector,
                                                   String id) {
-        if (!Objects.equals(object.getConnectorId(), id)) {
+        if (!Objects.equals(connector.getConnectorId(), id)) {
             throw new OcpiInvalidParametersException();
         }
     }

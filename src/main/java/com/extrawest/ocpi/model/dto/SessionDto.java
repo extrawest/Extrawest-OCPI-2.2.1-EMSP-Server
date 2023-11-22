@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Session extends ClientOwnedObject implements OcpiRequestData, OcpiResponseData {
+public class SessionDto extends ClientOwnedObject implements OcpiRequestData, OcpiResponseData {
     /**
      * The timestamp when the session became ACTIVE in the Charge Point.
      * When the session is still PENDING, this field SHALL be set to the time the Session was created at the

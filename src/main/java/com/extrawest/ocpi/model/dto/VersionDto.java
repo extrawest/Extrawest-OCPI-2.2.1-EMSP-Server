@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Version implements OcpiResponseData, OcpiRequestData {
+public class VersionDto implements OcpiResponseData, OcpiRequestData {
     /**
      * The version number
      */

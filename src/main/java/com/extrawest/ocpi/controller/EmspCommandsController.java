@@ -5,6 +5,7 @@ import com.extrawest.ocpi.model.enums.CommandType;
 import com.extrawest.ocpi.service.EMSPCommandsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class EmspCommandsController {
     public void postCommand(
             @RequestBody @Valid CommandResult commandResult,
             @PathVariable(value = "command") CommandType commandType,
-            @PathVariable(value = "uid") String uniqueId
+            @PathVariable(value = "uid") @Size(min = 1, max = 36) String uniqueId
     ) {
         emspCommandsService.postCommand(commandResult, commandType, uniqueId);
     }

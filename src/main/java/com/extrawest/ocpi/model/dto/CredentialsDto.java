@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Credentials implements OcpiRequestData, OcpiResponseData {
+public class CredentialsDto implements OcpiRequestData, OcpiResponseData {
     /**
      * The credentials token for the other party to authenticate in your system.
      */

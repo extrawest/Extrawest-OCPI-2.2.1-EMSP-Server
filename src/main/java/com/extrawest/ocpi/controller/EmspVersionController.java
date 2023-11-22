@@ -1,8 +1,8 @@
 package com.extrawest.ocpi.controller;
 
 import com.extrawest.ocpi.model.dto.ResponseFormat;
-import com.extrawest.ocpi.model.dto.VersionDetails;
-import com.extrawest.ocpi.model.dto.Version;
+import com.extrawest.ocpi.model.dto.VersionDetailsDto;
+import com.extrawest.ocpi.model.dto.VersionDto;
 import com.extrawest.ocpi.model.enums.VersionNumber;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
 import com.extrawest.ocpi.service.EMSPVersionService;
@@ -33,10 +33,10 @@ public class EmspVersionController {
      * @return list of VersionResponseDTO
      */
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<Version>>> getVersions() {
-        List<Version> versions = emspVersionService.getVersions();
+    public ResponseEntity<ResponseFormat<List<VersionDto>>> getVersions() {
+        List<VersionDto> versions = emspVersionService.getVersions();
 
-        ResponseFormat<List<Version>> responseFormat = new ResponseFormat<List<Version>>()
+        ResponseFormat<List<VersionDto>> responseFormat = new ResponseFormat<List<VersionDto>>()
                 .build(OcpiStatusCode.SUCCESS, versions);
         return ResponseEntity.ok(responseFormat);
     }
@@ -49,12 +49,12 @@ public class EmspVersionController {
      * @return VersionDetails
      */
     @GetMapping("/details")
-    public ResponseEntity<ResponseFormat<VersionDetails>> getVersionDetails(
+    public ResponseEntity<ResponseFormat<VersionDetailsDto>> getVersionDetails(
             @RequestParam(value = "version") String version
     ) {
-        VersionDetails versionDetails = emspVersionService.getVersionDetails(VersionNumber.fromValue(version));
+        VersionDetailsDto versionDetails = emspVersionService.getVersionDetails(VersionNumber.fromValue(version));
 
-        ResponseFormat<VersionDetails> responseFormat = new ResponseFormat<VersionDetails>()
+        ResponseFormat<VersionDetailsDto> responseFormat = new ResponseFormat<VersionDetailsDto>()
                 .build(OcpiStatusCode.SUCCESS, versionDetails);
         return ResponseEntity.ok(responseFormat);
     }

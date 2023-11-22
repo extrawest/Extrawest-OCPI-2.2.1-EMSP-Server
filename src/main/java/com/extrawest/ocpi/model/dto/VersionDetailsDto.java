@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VersionDetails implements OcpiRequestData, OcpiResponseData {
+public class VersionDetailsDto implements OcpiRequestData, OcpiResponseData {
     /**
      * The version number.
      */
