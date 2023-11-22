@@ -15,7 +15,6 @@ public class ClientObjectValidation {
      * @throws OcpiGeneralClientException if country_code and/or party_id in request parameters is other than
      * country_code and/or party_id in request body
      * @throws OcpiInvalidParametersException if tariff_id in request parameters is other than in request body
-     * @see <a href="https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#errors">Errors</a>
      */
 
     public static <T extends ClientOwnedObject> void checkClientCanModifyObject(T object,

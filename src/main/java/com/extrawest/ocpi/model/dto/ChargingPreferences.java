@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 
 /**
  * Contains the charging preferences of an EV driver.
- *
- * @see <a href="https://github.com/ocpi/ocpi/blob/480973547169dee2fe6d12b1a0fe604623efcbb5/mod_sessions.asciidoc#mod_sessions_charging_preferences_object>ChargingPreferences Object</a>
  */
 @Data
 @AllArgsConstructor
