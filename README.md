@@ -174,7 +174,7 @@ Configuration Modules:
 
 Roadmap:
 
-Functionality | Q7 2023                      |                                                                                                                     
+Functionality | 2023                      |                                                                                                                     
 ------------ |------------------------------|
 [Authentification](https://github.com/ocpi/ocpi/blob/2.2.1/credentials.asciidoc)|
 [Authorization](https://github.com/ocpi/ocpi/blob/master/transport_and_format.asciidoc#transport_and_format_authorization_header) |
