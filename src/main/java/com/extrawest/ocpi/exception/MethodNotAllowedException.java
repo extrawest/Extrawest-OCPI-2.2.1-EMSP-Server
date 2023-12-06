@@ -4,9 +4,8 @@ import org.apache.logging.log4j.util.Strings;
 
 import java.util.Arrays;
 
-public class NotEnoughInformationException extends RuntimeException {
-
-    public NotEnoughInformationException(String...reasons) {
+public class MethodNotAllowedException extends RuntimeException {
+    public MethodNotAllowedException(String...reasons) {
         super(getErrorLogMsg(reasons));
     }
 

@@ -27,7 +27,8 @@ public class OcpiExceptionHandler extends ResponseEntityExceptionHandler {
             OcpiGeneralClientException.class,
             OcpiResourceNotFoundException.class,
             OcpiUnknownTokenException.class,
-            NotEnoughInformationException.class})
+            NotEnoughInformationException.class,
+            MethodNotAllowedException.class})
     public ResponseEntity<ResponseFormat<OcpiResponseData>> handleException(RuntimeException ex) {
         HttpStatus httpStatus;
         OcpiStatusCode ocpiStatusCode;
@@ -47,7 +48,11 @@ public class OcpiExceptionHandler extends ResponseEntityExceptionHandler {
         } else if (ex instanceof NotEnoughInformationException) {
             httpStatus = HttpStatus.BAD_REQUEST;
             ocpiStatusCode = OcpiStatusCode.NOT_ENOUGH_INFORMATION;
-        } else {
+        } else if (ex instanceof MethodNotAllowedException) {
+            httpStatus = HttpStatus.METHOD_NOT_ALLOWED;
+            ocpiStatusCode = OcpiStatusCode.CLIENT_ERROR;
+        }
+        else {
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
             ocpiStatusCode = OcpiStatusCode.SERVER_ERROR;
         }

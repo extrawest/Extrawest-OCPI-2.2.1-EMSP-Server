@@ -90,4 +90,5 @@ public class Connector extends AbstractDomainObject implements LocationData {
     @NotNull
     @JsonProperty("last_updated")
     private LocalDateTime lastUpdated;
+
 }

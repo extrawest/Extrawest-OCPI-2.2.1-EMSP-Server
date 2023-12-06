@@ -9,6 +9,9 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Objects;
 
+import static com.extrawest.ocpi.exception.ExceptionMessage.OBJECT_IDS_IS_DIFFERENT;
+import static com.extrawest.ocpi.exception.ExceptionMessage.PARTY_AND_COUNTRY_DIFFERS;
+
 @UtilityClass
 public class ClientObjectValidation {
     /**
@@ -23,24 +26,24 @@ public class ClientObjectValidation {
                                                                                 String id) {
         if (!Objects.equals(object.getCountryCode(), countryCode)
                 || !Objects.equals(object.getPartyId(), partyId))
-            throw new OcpiGeneralClientException();
+            throw new OcpiGeneralClientException(PARTY_AND_COUNTRY_DIFFERS);
 
         if (!Objects.equals(object.getId(), id)) {
-            throw new OcpiInvalidParametersException();
+            throw new OcpiInvalidParametersException(OBJECT_IDS_IS_DIFFERENT, object.getClass().getName());
         }
     }
 
     public static void checkClientCanModifyObject(EVSE evse,
                                                   String id) {
         if (!Objects.equals(evse.getUid(), id)) {
-            throw new OcpiInvalidParametersException();
+            throw new OcpiInvalidParametersException(OBJECT_IDS_IS_DIFFERENT, evse.getClass().getName());
         }
     }
 
     public static void checkClientCanModifyObject(Connector connector,
                                                   String id) {
         if (!Objects.equals(connector.getConnectorId(), id)) {
-            throw new OcpiInvalidParametersException();
+            throw new OcpiInvalidParametersException(OBJECT_IDS_IS_DIFFERENT, connector.getClass().getName());
         }
     }
 
