@@ -4,6 +4,7 @@ import com.extrawest.ocpi.model.dto.*;
 import com.extrawest.ocpi.model.enums.Facility;
 import com.extrawest.ocpi.model.enums.ParkingType;
 import com.extrawest.ocpi.model.markers.LocationData;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Location extends ClientOwnedObject implements LocationData {
     /**
      * Defines if a Location may be published on an website or app etc.

@@ -18,7 +18,7 @@ public class CredentialsDto implements OcpiRequestData, OcpiResponseData {
     /**
      * The credentials token for the other party to authenticate in your system.
      */
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 64)
     @NotBlank
     private String token;
 

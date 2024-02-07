@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class OcpiResourceNotFoundException extends RuntimeException {
 
-    public OcpiResourceNotFoundException(String...reasons) {
+    public OcpiResourceNotFoundException(String... reasons) {
         super(reasons.length == 0 ? Strings.EMPTY : Arrays.toString(reasons));
     }
 }

@@ -5,13 +5,19 @@ import com.extrawest.ocpi.model.enums.Capability;
 import com.extrawest.ocpi.model.enums.ParkingRestriction;
 import com.extrawest.ocpi.model.enums.Status;
 import com.extrawest.ocpi.model.markers.LocationData;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -25,9 +31,12 @@ import java.util.List;
  * then it typically indicates that the EVSE should be put in a different Location object
  * (sometimes with the same address but with different coordinates/directions).
  */
+
 @Data
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EVSE extends AbstractDomainObject implements LocationData {
     /**
      * Uniquely identifies the EVSE within the CPOs platform (and sub-operator platforms). For example a
@@ -108,6 +117,8 @@ public class EVSE extends AbstractDomainObject implements LocationData {
     /**
      * Timestamp when this EVSE or one of its Connectors was last updated (or created).
      */
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @NotNull
     @JsonProperty("last_updated")
     private LocalDateTime lastUpdated;

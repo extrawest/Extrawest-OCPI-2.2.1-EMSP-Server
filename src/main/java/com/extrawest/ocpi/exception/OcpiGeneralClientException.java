@@ -8,11 +8,11 @@ import java.util.Arrays;
 @Slf4j
 public class OcpiGeneralClientException extends RuntimeException {
 
-    public OcpiGeneralClientException(String...reasons) {
+    public OcpiGeneralClientException(String... reasons) {
         super(getErrorLogMsg(reasons));
     }
 
-    private static String getErrorLogMsg(String...reasons) {
+    private static String getErrorLogMsg(String... reasons) {
         return reasons.length == 0 ? Strings.EMPTY : Arrays.toString(reasons);
     }
 }

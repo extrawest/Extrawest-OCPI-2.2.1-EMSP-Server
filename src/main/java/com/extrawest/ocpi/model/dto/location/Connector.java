@@ -6,6 +6,10 @@ import com.extrawest.ocpi.model.enums.ConnectorType;
 import com.extrawest.ocpi.model.enums.PowerType;
 import com.extrawest.ocpi.model.markers.LocationData;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -87,6 +91,8 @@ public class Connector extends AbstractDomainObject implements LocationData {
     /**
      * Timestamp when this Connector was last updated (or created).
      */
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @NotNull
     @JsonProperty("last_updated")
     private LocalDateTime lastUpdated;

@@ -3,6 +3,10 @@ package com.extrawest.ocpi.model.dto;
 import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.extrawest.ocpi.util.Constants;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -44,6 +48,8 @@ public class ClientOwnedObject implements OcpiResponseData {
     /**
      * Timestamp when this object (e.g. Session, Tariff, Cdr) was last updated (or created).
      */
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @NotNull
     @JsonProperty("last_updated")
     private LocalDateTime lastUpdated;

@@ -28,7 +28,10 @@ public class OcpiExceptionHandler extends ResponseEntityExceptionHandler {
             OcpiResourceNotFoundException.class,
             OcpiUnknownTokenException.class,
             NotEnoughInformationException.class,
-            MethodNotAllowedException.class})
+            MethodNotAllowedException.class,
+            OcpiMissingEndpointError.class,
+            OcpiUnableToUseClientApiError.class,
+            OcpiUnsupportedVersionException.class})
     public ResponseEntity<ResponseFormat<OcpiResponseData>> handleException(RuntimeException ex) {
         HttpStatus httpStatus;
         OcpiStatusCode ocpiStatusCode;
@@ -51,8 +54,16 @@ public class OcpiExceptionHandler extends ResponseEntityExceptionHandler {
         } else if (ex instanceof MethodNotAllowedException) {
             httpStatus = HttpStatus.METHOD_NOT_ALLOWED;
             ocpiStatusCode = OcpiStatusCode.CLIENT_ERROR;
-        }
-        else {
+        } else if (ex instanceof OcpiMissingEndpointError) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            ocpiStatusCode = OcpiStatusCode.MISSION_ENDPOINT_ERROR;
+        } else if (ex instanceof OcpiUnableToUseClientApiError) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            ocpiStatusCode = OcpiStatusCode.UNABLE_TO_USE_API_ERROR;
+        } else if (ex instanceof OcpiUnsupportedVersionException) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            ocpiStatusCode = OcpiStatusCode.UNSUPPORTED_VERSION_ERROR;
+        } else {
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
             ocpiStatusCode = OcpiStatusCode.SERVER_ERROR;
         }
