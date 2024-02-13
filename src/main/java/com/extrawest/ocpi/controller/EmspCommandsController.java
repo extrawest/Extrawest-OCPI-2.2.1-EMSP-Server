@@ -33,12 +33,12 @@ public class EmspCommandsController {
      * for example by adding a unique id as a URL segment.
      */
     @PostMapping("/{command}/{uid}")
-    public void postCommand(
+    public void postCommandResult(
             @RequestBody @Valid CommandResult commandResult,
             @PathVariable(value = "command") CommandType commandType,
             @PathVariable(value = "uid") @Size(min = 1, max = 36) String uniqueId
     ) {
-        emspCommandsService.postCommand(commandResult, commandType, uniqueId);
+        emspCommandsService.postCommandResult(commandResult, commandType, uniqueId);
     }
 
 }
