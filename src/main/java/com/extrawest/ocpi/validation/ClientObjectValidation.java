@@ -15,8 +15,8 @@ import static com.extrawest.ocpi.exception.ExceptionMessage.PARTY_AND_COUNTRY_DI
 @UtilityClass
 public class ClientObjectValidation {
     /**
-     * @throws OcpiGeneralClientException if country_code and/or party_id in request parameters is other than
-     * country_code and/or party_id in request body
+     * @throws OcpiGeneralClientException     if country_code and/or party_id in request parameters is other than
+     *                                        country_code and/or party_id in request body
      * @throws OcpiInvalidParametersException if tariff_id in request parameters is other than in request body
      */
 

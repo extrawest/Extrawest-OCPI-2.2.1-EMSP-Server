@@ -61,8 +61,7 @@ public class EmspSessionsController {
             @RequestBody @Valid SessionDto sessionDTO,
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
-            @RequestParam(value = "session_id") @Size(min = 1, max = 36) String sessionId
-    ) {
+            @RequestParam(value = "session_id") @Size(min = 1, max = 36) String sessionId) {
         ClientObjectValidation.checkClientCanModifyObject(sessionDTO, countryCode, partyId, sessionId);
         SessionDto saved = emspSessionsService.putSession(sessionDTO, countryCode, partyId, sessionId);
         ResponseFormat<SessionDto> responseFormat = new ResponseFormat<SessionDto>()
@@ -73,22 +72,21 @@ public class EmspSessionsController {
 
     /**
      * Send a new/updated Session object to the eMSP.
-     * @param sessionDTO New or updated Session object.
+     *
+     * @param sessionDTO  New or updated Session object.
      * @param countryCode Country code of the CPO performing this PUT on the eMSP’s system. This SHALL be the same
-     * value as the country_code in the Session object being pushed.
-     * @param partyId Party ID (Provider ID) of the CPO performing this PUT on the eMSP’s system. This SHALL be the
-     * same value as the party_id in the Session object being pushed.
-     * @param sessionId id of the new or updated Session object.
+     *                    value as the country_code in the Session object being pushed.
+     * @param partyId     Party ID (Provider ID) of the CPO performing this PUT on the eMSP’s system. This SHALL be the
+     *                    same value as the party_id in the Session object being pushed.
+     * @param sessionId   id of the new or updated Session object.
      */
     @PatchMapping
     public void patchSession(
             @RequestBody @Valid SessionDto sessionDTO,
             @RequestParam(value = "country_code") @Size(min = 2, max = 2) String countryCode,
             @RequestParam(value = "party_id") @Size(min = 3, max = 3) String partyId,
-            @RequestParam(value = "session_id") @Size(min = 1, max = 36) String sessionId
-    ) {
+            @RequestParam(value = "session_id") @Size(min = 1, max = 36) String sessionId) {
         emspSessionsService.patchSession(sessionDTO, countryCode, partyId, sessionId);
     }
-
 
 }

@@ -1,8 +1,8 @@
 package com.extrawest.ocpi.controller;
 
+import com.extrawest.ocpi.model.dto.ResponseFormat;
 import com.extrawest.ocpi.model.dto.charging_profile.ActiveChargingProfile;
 import com.extrawest.ocpi.model.dto.charging_profile.results.AbstractProfileResult;
-import com.extrawest.ocpi.model.dto.ResponseFormat;
 import com.extrawest.ocpi.service.EMSPChargingProfilesService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -39,7 +39,7 @@ public class EmspChargingProfilesController {
             @RequestBody AbstractProfileResult abstractProfileResult
     ) {
         return ResponseEntity.ok(emspChargingProfilesService.postChargingProfile(abstractProfileResult));
-    };
+    }
 
     /**
      * Receiver (typically CPO) can send an updated ActiveChargingProfile when other inputs have made changes to
@@ -47,10 +47,11 @@ public class EmspChargingProfilesController {
      * then the Sender (Typically SCSP) asking, the Sender SHALL post an update to this interface. When a local
      * input influence the ActiveChargingProfile in the EVSE AND the Receiver (typically CPO) is made aware of this,
      * the Receiver SHALL post an update to this interface.
-     * @param sessionId The unique id that identifies the session in the CPO platform.
+     *
+     * @param sessionId             The unique id that identifies the session in the CPO platform.
      * @param activeChargingProfile The new ActiveChargingProfile. If there is no longer any charging profile active,
-     * the ActiveChargingProfile SHALL reflect this by showing the maximum charging
-     * capacity of the EVSE.
+     *                              the ActiveChargingProfile SHALL reflect this by showing the maximum charging
+     *                              capacity of the EVSE.
      * @return The response to the PUT on the eMSP interface SHALL contain the Response Format with the data field omitted.
      */
     @PutMapping("/{session_id}")
@@ -59,6 +60,6 @@ public class EmspChargingProfilesController {
             @RequestBody @Valid ActiveChargingProfile activeChargingProfile
     ) {
         return ResponseEntity.ok(emspChargingProfilesService.putChargingProfile(sessionId, activeChargingProfile));
-    };
+    }
 
 }

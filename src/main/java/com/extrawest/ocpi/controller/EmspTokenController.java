@@ -65,7 +65,7 @@ public class EmspTokenController {
                 .build(OcpiStatusCode.SUCCESS, tokens);
 
         HttpHeaders responseHeaders = new HttpHeaders();
-        if (hasNext(offset, limit, totalCount)){
+        if (hasNext(offset, limit, totalCount)) {
             String uriForNextPage = constructNextPageUri(request, offset, limit);
             responseHeaders.set(PaginationHeaders.LINK, String.format("<%s>; rel=\"next\"", uriForNextPage));
         }

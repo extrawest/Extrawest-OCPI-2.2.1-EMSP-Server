@@ -27,10 +27,11 @@ public class EmspCommandsController {
      * The eMSP sends a URL in the POST method body to the CPO. The CPO is required to use this URL for
      * the asynchronous response by the Charge Point. It is advised to make this URL unique for
      * every request to differentiate simultaneous commands, for example by adding a unique id as a URL segment.
+     *
      * @param commandResult Result of the command request, from the Charge Point.
-     * @param commandType type of command
-     * @param uniqueId It is advised to make this URL unique for every request to differentiate simultaneous commands,
-     * for example by adding a unique id as a URL segment.
+     * @param commandType   type of command
+     * @param uniqueId      It is advised to make this URL unique for every request to differentiate simultaneous commands,
+     *                      for example by adding a unique id as a URL segment.
      */
     @PostMapping("/{command}/{uid}")
     public void postCommandResult(

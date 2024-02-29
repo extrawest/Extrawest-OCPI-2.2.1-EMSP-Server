@@ -53,7 +53,7 @@ public class EmspLocationController {
      * @param countryCode Country code of the CPO requesting data from the eMSP system.
      * @param partyId     Party ID (Provider ID) of the CPO requesting data from the eMSP system.
      * @param locationId  Location.id of the Location object to retrieve.
-     * @param evseUid  EVSE.id of the EVSE object to retrieve.
+     * @param evseUid     EVSE.id of the EVSE object to retrieve.
      * @return The EVSE object
      */
     @GetMapping("/{country_code}/{party_id}/{location_id}/{evse_uid}")
@@ -76,8 +76,8 @@ public class EmspLocationController {
      * @param countryCode Country code of the CPO requesting data from the eMSP system.
      * @param partyId     Party ID (Provider ID) of the CPO requesting data from the eMSP system.
      * @param locationId  Location.id of the Location object to retrieve.
-     * @param evseUid  EVSE.id of the EVSE object to retrieve.
-     * @param connectorId  Connector.id of the Connector object to retrieve.
+     * @param evseUid     EVSE.id of the EVSE object to retrieve.
+     * @param connectorId Connector.id of the Connector object to retrieve.
      * @return The Connector object
      */
     @GetMapping("/{country_code}/{party_id}/{location_id}/{evse_uid}/{connector_id}")
@@ -125,7 +125,7 @@ public class EmspLocationController {
      * The CPO pushes available EVSE objects to the eMSP. PUT can be used to send new Location objects to the eMSP but
      * also to replace existing Locations.
      *
-     * @param evse The request body contains the new/updated object.
+     * @param evse        The request body contains the new/updated object.
      * @param countryCode Country code of the CPO requesting this PUT to the eMSP system.
      *                    This SHALL be the same value as the country_code in the Location object being pushed.
      * @param partyId     Party ID (Provider ID) of the CPO requesting this PUT to the eMSP system.
@@ -153,7 +153,7 @@ public class EmspLocationController {
      * The CPO pushes available EVSE objects to the eMSP. PUT can be used to send new Location objects to the eMSP but
      * also to replace existing Locations.
      *
-     * @param connector The request body contains the new/updated object.
+     * @param connector   The request body contains the new/updated object.
      * @param countryCode Country code of the CPO requesting this PUT to the eMSP system.
      *                    This SHALL be the same value as the country_code in the Location object being pushed.
      * @param partyId     Party ID (Provider ID) of the CPO requesting this PUT to the eMSP system.
@@ -184,7 +184,7 @@ public class EmspLocationController {
     /**
      * Notify the eMSP of partial updates to a Loccation.
      *
-     * @param locationDTO   The request body contains the changed object.
+     * @param locationDTO The request body contains the changed object.
      * @param countryCode Country code of the CPO requesting this PUT to the eMSP system.
      *                    This SHALL be the same value as the country_code in the Location object being pushed.
      * @param partyId     Party ID (Provider ID) of the CPO requesting this PUT to the eMSP system.
@@ -210,7 +210,7 @@ public class EmspLocationController {
     /**
      * Notify the eMSP of partial updates to a EVSE.
      *
-     * @param evse   The request body contains the changed object.
+     * @param evse        The request body contains the changed object.
      * @param countryCode Country code of the CPO requesting this PUT to the eMSP system.
      *                    This SHALL be the same value as the country_code in the Location object being pushed.
      * @param partyId     Party ID (Provider ID) of the CPO requesting this PUT to the eMSP system.

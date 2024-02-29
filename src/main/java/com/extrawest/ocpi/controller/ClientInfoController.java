@@ -38,8 +38,9 @@ public class ClientInfoController {
 
     /**
      * Push new/updated ClientInfo object to the connect client.
+     *
      * @param countryCode Country code of the eMSP sending this PUT request to the CPO system.
-     * @param partyId Party ID (Provider ID) of the eMSP sending this PUT request to the CPO system.
+     * @param partyId     Party ID (Provider ID) of the eMSP sending this PUT request to the CPO system.
      */
     @PutMapping("/{country_code}/{party_id}")
     public void putHubClientInfo(

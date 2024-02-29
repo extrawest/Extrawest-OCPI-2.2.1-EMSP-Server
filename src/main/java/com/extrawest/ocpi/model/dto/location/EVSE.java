@@ -1,6 +1,7 @@
 package com.extrawest.ocpi.model.dto.location;
 
-import com.extrawest.ocpi.model.dto.*;
+import com.extrawest.ocpi.model.dto.AbstractDomainObject;
+import com.extrawest.ocpi.model.dto.DisplayText;
 import com.extrawest.ocpi.model.enums.Capability;
 import com.extrawest.ocpi.model.enums.ParkingRestriction;
 import com.extrawest.ocpi.model.enums.Status;

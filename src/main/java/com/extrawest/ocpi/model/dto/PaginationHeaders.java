@@ -14,10 +14,10 @@ public class PaginationHeaders {
     */
     public final static String X_TOTAL_COUNT = "X-Total-Count";
 
-   /* The maximum number of objects that the server can return.
-    Note that this is an upper limit. If there are not enough remaining objects to return,
-    fewer objects than this upper limit number will be returned, X-Limit SHALL then still
-    show the upper limit, not the number of objects returned.
-    */
-   public final static String X_LIMIT = "X-Limit";
+    /* The maximum number of objects that the server can return.
+     Note that this is an upper limit. If there are not enough remaining objects to return,
+     fewer objects than this upper limit number will be returned, X-Limit SHALL then still
+     show the upper limit, not the number of objects returned.
+     */
+    public final static String X_LIMIT = "X-Limit";
 }

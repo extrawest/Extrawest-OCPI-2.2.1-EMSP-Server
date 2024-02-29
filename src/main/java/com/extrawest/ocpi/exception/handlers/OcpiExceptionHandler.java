@@ -63,11 +63,7 @@ public class OcpiExceptionHandler extends ResponseEntityExceptionHandler {
         } else if (ex instanceof OcpiUnsupportedVersionException) {
             httpStatus = HttpStatus.BAD_REQUEST;
             ocpiStatusCode = OcpiStatusCode.UNSUPPORTED_VERSION_ERROR;
-        } else if(ex instanceof OcpiUnknownToken) {
-            httpStatus = HttpStatus.BAD_REQUEST;
-            ocpiStatusCode = OcpiStatusCode.UNKNOWN_TOKEN;
-        }
-        else {
+        } else {
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
             ocpiStatusCode = OcpiStatusCode.SERVER_ERROR;
         }

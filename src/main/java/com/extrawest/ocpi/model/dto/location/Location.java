@@ -1,6 +1,8 @@
 package com.extrawest.ocpi.model.dto.location;
 
-import com.extrawest.ocpi.model.dto.*;
+import com.extrawest.ocpi.model.dto.BusinessDetails;
+import com.extrawest.ocpi.model.dto.ClientOwnedObject;
+import com.extrawest.ocpi.model.dto.DisplayText;
 import com.extrawest.ocpi.model.enums.Facility;
 import com.extrawest.ocpi.model.enums.ParkingType;
 import com.extrawest.ocpi.model.markers.LocationData;
